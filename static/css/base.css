@@ -102,10 +102,6 @@ a.category-badge > span.badge:hover {
     cursor: pointer;
 }
 
-input[name='q']::placeholder {
-    color: #aab7c4;
-}
-
 /* ------------------------------- bootstrap toasts */
 
 .message-container {
@@ -195,5 +191,16 @@ input[name='q']::placeholder {
 
     .header-container {
         padding-top: 164px;
+    }
+}
+
+/* pad the top a bit when navbar is collapsed on mobile */
+@media (max-width: 991px) {
+    .header-container {
+        padding-top: 116px;
+    }
+
+    body {
+        height: calc(100vh - 116px);
     }
 }
