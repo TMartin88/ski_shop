@@ -1,0 +1,1 @@
+web: gunicorn ski_shop.wsgi:application
