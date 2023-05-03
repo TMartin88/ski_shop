@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'home',
     'products',
+    'sizes',
     'basket',
     'checkout',
     'profiles',
@@ -211,7 +212,9 @@ if 'DEVELOPMENT' in os.environ:
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
     DEFAULT_FROM_EMAIL = 'skishop@example.com'
 else:
-    EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+    EMAIL_BACKEND = 'sendgrid_backend.SendgridBackend'
+    SENDGRID_API_KEY = 'your-sendgrid-api-key'
+    
     EMAIL_USE_TLS = os.environ.get('EMAIL_USE_TLS')
     EMAIL_PORT = os.environ.get('EMAIL_PORT')
     EMAIL_HOST = os.environ.get('EMAIL_HOST')
