@@ -1,3 +1,4 @@
+from decimal import Decimal
 import uuid
 
 from django.db import models
@@ -8,6 +9,7 @@ from django_countries.fields import CountryField
 
 from products.models import Product
 from profiles.models import UserProfile
+from shipping.models import ShippingMethod
 
 
 class Order(models.Model):
@@ -29,6 +31,8 @@ class Order(models.Model):
     grand_total = models.DecimalField(max_digits=10, decimal_places=2, null=False, default=0)
     original_basket = models.TextField(null=False, blank=False, default='')
     stripe_pid = models.CharField(max_length=254, null=False, blank=False, default='')
+    shipping_method = models.ForeignKey('shipping.ShippingMethod', on_delete=models.PROTECT)
+    weight_kg = models.DecimalField(max_digits=6, decimal_places=2, null=False, default=0)
 
     def _generate_order_number(self):
         """
@@ -42,6 +46,7 @@ class Order(models.Model):
         accounting for delivery costs.
         """
         self.order_total = self.lineitems.aggregate(Sum('lineitem_total'))['lineitem_total__sum'] or 0
+        self.weight_kg = self.lineitems.aggregate(Sum('product__weight', output_field=models.DecimalField()))['product__weight__sum'] or 0
         if self.order_total < settings.FREE_DELIVERY_THRESHOLD:
             self.delivery_cost = self.order_total * settings.STANDARD_DELIVERY_PERCENTAGE / 100
         else:
@@ -56,6 +61,7 @@ class Order(models.Model):
         """
         if not self.order_number:
             self.order_number = self._generate_order_number()
+            self.update_total()
         super().save(*args, **kwargs)
 
     def __str__(self):
