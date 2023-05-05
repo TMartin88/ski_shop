@@ -3,6 +3,7 @@ from .models import Size, ProductSize
 
 
 class SizeAdmin(admin.ModelAdmin):
+    search_fields = ('name', 'category__name')
     list_display = ('name', 'category')
     list_filter = ('category',)
     search_fields = ('name', 'category__name')
