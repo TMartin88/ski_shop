@@ -1,12 +1,13 @@
 from django import forms
 from .models import Size
+from products.models import Category
 
 
 class SizeForm(forms.ModelForm):
 
     class Meta:
         model = Size
-        fields = ['name', 'friendly_name', 'category']
+        fields = ['category', 'name', 'friendly_name', ]
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

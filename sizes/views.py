@@ -75,7 +75,7 @@ def add_size(request):
         if form.is_valid():
             size = form.save()
             messages.success(request, 'Successfully added size!')
-            return redirect(reverse('size_detail', args=[size.id]))
+            return redirect(reverse('sizes', args=[size.id]))
         else:
             messages.error(
                 request, 'Failed to add size. Please ensure the form is valid.'
