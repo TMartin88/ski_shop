@@ -1,33 +1,45 @@
 {% extends "base.html" %}
+{% load static %}
+
+{% block page_header %}
+    <div class="container-fluid page-header">
+        <div class="row">
+            <div class="col">
+                <h1>All Sizes</h1>
+            </div>
+        </div>
+    </div>
+{% endblock %}
 
 {% block content %}
-  <div class="container">
-    <h1>All Sizes</h1>
-    <table class="table">
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Name</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for size in sizes %}
+  <div class="container-fluid content-overlay">
+    <div class="container">
+      <table class="table">
+        <thead>
           <tr>
-            <td>{{ size.id }}</td>
-            <td>{{ size.name }}</td>
-            <td>
-              <a href="{% url 'edit_size' size.id %}" class="btn btn-primary">Edit</a>
-              <a href="{% url 'delete_size' size.id %}" class="btn btn-danger">Delete</a>
-            </td>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Actions</th>
           </tr>
-        {% empty %}
-          <tr>
-            <td colspan="3">No sizes found.</td>
-          </tr>
-        {% endfor %}
-      </tbody>
-    </table>
-    <a href="{% url 'add_size' %}" class="btn btn-success">Add Size</a>
+        </thead>
+        <tbody>
+          {% for size in sizes %}
+            <tr>
+              <td>{{ size.id }}</td>
+              <td>{{ size.name }}</td>
+              <td>
+                <a href="{% url 'edit_size' size.id %}" class="btn btn-primary">Edit</a>
+                <a href="{% url 'delete_size' size.id %}" class="btn btn-danger">Delete</a>
+              </td>
+            </tr>
+          {% empty %}
+            <tr>
+              <td colspan="3">No sizes found.</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      <a href="{% url 'add_size' %}" class="btn btn-success">Add Size</a>
+    </div>
   </div>
 {% endblock %}
