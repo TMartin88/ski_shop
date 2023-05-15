@@ -35,7 +35,7 @@
                 <th>Name</th>
                 <th>Friendly Name</th>
                 <th>Category</th>
-                <th colspan="4">Actions</th>
+                <th colspan="3">Actions</th>
               </tr>
               {% for size in sizes %}
               <tr>
@@ -55,11 +55,6 @@
                 <td>
                   <a href="{% url 'delete_size' size.id %}" aria-label="Delete Size">
                     <div class="btn btn-block btn-primary">Delete</div>
-                  </a>
-                </td>
-                <td>
-                  <a href="{% url 'assign_size' size.id %}" aria-label="Assign Size">
-                    <div class="btn btn-block btn-primary">Assign to Product</div>
                   </a>
                 </td>
               </tr>
