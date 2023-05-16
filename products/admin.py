@@ -1,5 +1,14 @@
 from django.contrib import admin
 from .models import Product, Category
+from product_sizes.models import ProductSize
+
+
+class ProductSizeInline(admin.TabularInline):
+    model = ProductSize
+
+
+class ProductAdmin(admin.ModelAdmin):
+    inlines = [ProductSizeInline]
 
 
 class ProductAdmin(admin.ModelAdmin):
