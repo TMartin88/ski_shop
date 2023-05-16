@@ -1,17 +1,20 @@
 from django import forms
 from django.contrib import admin
 from .models import Product, Category
+from sizes.models import Size
 from product_sizes.models import ProductSize
 
 
 class ProductSizeInlineForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        product = self.instance.product if self.instance else None
+        product = self.parent_object
         if product:
-            # Filter the sizes based on the selected product's category
+            # Get the category of the selected product
             category = product.category
-            self.fields['size'].queryset = self.fields['size'].queryset.filter(category=category)
+
+            # Filter the sizes based on the selected product's category
+            self.fields['size'].queryset = Size.objects.filter(category=category)
 
     class Meta:
         model = ProductSize
@@ -32,6 +35,7 @@ class ProductAdmin(admin.ModelAdmin):
         'sku',
         'name',
         'category',
+        'get_sizes',
         'price',
         'rating',
         'image',
