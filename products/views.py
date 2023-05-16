@@ -3,10 +3,12 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.db.models.functions import Lower
+from django.forms import inlineformset_factory
 
 from .models import Product, Category
-from .forms import ProductForm
+from .forms import ProductForm, ProductSizeForm
 from product_sizes.models import ProductSize
+from sizes.models import Size
 
 
 def all_products(request):
@@ -106,23 +108,29 @@ def edit_product(request, product_id):
 
     product = get_object_or_404(Product, pk=product_id)
 
+    ProductSizeFormSet = inlineformset_factory(Product, ProductSize, form=ProductSizeForm, extra=1, can_delete=True)
+
     if request.method == 'POST':
         form = ProductForm(request.POST, request.FILES, instance=product)
+        formset = ProductSizeFormSet(request.POST, instance=product)
     
-        if form.is_valid():
+        if form.is_valid() and formset.is_valid():
             form.save()
+            formset.save()
             messages.success(request, 'Successfully updated product!')
             return redirect(reverse('product_detail', args=[product.id]))
         else:
             messages.error(request, 'Failed to update product. Please ensure the form is valid.')
     else:
         form = ProductForm(instance=product)
+        formset = ProductSizeFormSet(instance=product)
         messages.info(request, f'You are editing {product.name}')
 
     template = 'products/edit_product.html'
     context = {
         'form': form,
         'product': product,
+        'formset': formset,
     }
 
     return render(request, template, context)
