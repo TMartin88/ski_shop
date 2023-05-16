@@ -8,13 +8,11 @@ from product_sizes.models import ProductSize
 class ProductSizeInlineForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        product = self.parent_object
-        if product:
-            # Get the category of the selected product
-            category = product.category
 
-            # Filter the sizes based on the selected product's category
-            self.fields['size'].queryset = Size.objects.filter(category=category)
+        # If the product is not selected yet
+        if not self.instance.product_id:
+            # Set the queryset of the size field to an empty list
+            self.fields['size'].queryset = Size.objects.none()
 
     class Meta:
         model = ProductSize
@@ -24,18 +22,16 @@ class ProductSizeInlineForm(forms.ModelForm):
 class ProductSizeInline(admin.TabularInline):
     model = ProductSize
     form = ProductSizeInlineForm
+    extra = 0
 
 
 class ProductAdmin(admin.ModelAdmin):
     inlines = [ProductSizeInline]
 
-
-class ProductAdmin(admin.ModelAdmin):
     list_display = (
         'sku',
         'name',
         'category',
-        'get_sizes',
         'price',
         'rating',
         'image',
