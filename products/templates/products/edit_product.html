@@ -32,30 +32,6 @@
                             {{ field }}
                         {% endif %}
                     {% endfor %}
-                    
-                    <!-- Size selection -->
-                    <div class="form-group">
-                        <label for="id_sizes">Sizes:</label>
-                        <select name="sizes" id="id_sizes" class="form-control" multiple>
-                            {% for size in sizes %}
-                                {% if size in selected_sizes %}
-                                    <option value="{{ size.id }}" selected>{{ size.name }}</option>
-                                {% else %}
-                                    <option value="{{ size.id }}">{{ size.name }}</option>
-                                {% endif %}
-                            {% endfor %}
-                        </select>
-                    </div>
-                    
-                    <!-- Remove assigned sizes -->
-                    <div class="form-group">
-                        <label for="id_remove_sizes">Remove Sizes:</label>
-                        <select name="remove_sizes" id="id_remove_sizes" class="form-control" multiple>
-                            {% for size in selected_sizes %}
-                                <option value="{{ size.id }}">{{ size.name }}</option>
-                            {% endfor %}
-                        </select>
-                    </div>
                              
                     <div class="text-right">
                         <a class="btn btn-outline-black rounded-0" href="{% url 'products' %}">Cancel</a>
