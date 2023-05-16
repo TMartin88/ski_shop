@@ -2,20 +2,24 @@ from django.contrib import admin
 from .models import Product, Category
 from product_sizes.models import ProductSize
 from sizes.models import Size
-from django.forms import BaseInlineFormSet
-
-
-class ProductSizeFormSet(BaseInlineFormSet):
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        # Filter sizes based on the selected product's category
-        self.queryset = Size.objects.filter(category=self.instance.category)
 
 
 class ProductSizeInline(admin.TabularInline):
     model = ProductSize
     extra = 1
-    formset = ProductSizeFormSet
+
+    def formfield_for_foreignkey(self, db_field, request, **kwargs):
+        if db_field.name == "size":
+            # Filter sizes based on the selected product's category
+            product_id = request.resolver_match.args[0]  # Get the current product ID
+            product = Product.objects.get(pk=product_id)
+            kwargs["queryset"] = Size.objects.filter(category=product.category)
+        return super().formfield_for_foreignkey(db_field, request, **kwargs)
+
+    def delete_queryset(self, request, queryset):
+        # Override delete_queryset to delete entries from the ProductSize model
+        for obj in queryset:
+            obj.delete()
 
 
 class ProductAdmin(admin.ModelAdmin):
