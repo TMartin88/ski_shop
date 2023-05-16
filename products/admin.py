@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django.core.exceptions import ObjectDoesNotExist
 from .models import Product, Category
 from product_sizes.models import ProductSize
 from sizes.models import Size
@@ -19,7 +20,10 @@ class ProductSizeInline(admin.TabularInline):
     def delete_queryset(self, request, queryset):
         # Override delete_queryset to delete entries from the ProductSize model
         for obj in queryset:
-            obj.delete()
+            try:
+                obj.delete()
+            except ObjectDoesNotExist:
+                pass
 
 
 class ProductAdmin(admin.ModelAdmin):
