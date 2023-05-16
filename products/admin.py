@@ -11,10 +11,14 @@ class ProductSizeInline(admin.TabularInline):
 
     def formfield_for_foreignkey(self, db_field, request, **kwargs):
         if db_field.name == "size":
-            # Filter sizes based on the selected product's category
-            product_id = request.resolver_match.args[0]  # Get the current product ID
-            product = Product.objects.get(pk=product_id)
-            kwargs["queryset"] = Size.objects.filter(category=product.category)
+            # Check if the product being edited already has ProductSize entries
+            if request.resolver_match.view_name == 'admin:products_product_change':
+                product_id = request.resolver_match.kwargs.get('object_id')
+                try:
+                    product = Product.objects.get(pk=product_id)
+                    kwargs["queryset"] = Size.objects.filter(category=product.category)
+                except Product.DoesNotExist:
+                    pass
         return super().formfield_for_foreignkey(db_field, request, **kwargs)
 
     def delete_queryset(self, request, queryset):
