@@ -123,11 +123,13 @@ def edit_product(request, product_id):
     
         if form.is_valid() and formset.is_valid():
             form.save()
-            instances = formset.save(commit=False)
-            for instance in instances:
-                instance.product = product
-                instance.save()
-            formset.save_m2m()
+            formset.save()
+
+            # Delete instances marked for deletion
+            for deleted_form in formset.deleted_forms:
+                if deleted_form.instance.id is not None:
+                    deleted_form.instance.delete()
+
             messages.success(request, 'Successfully updated product!')
             return redirect(reverse('product_detail', args=[product.id]))
         else:
