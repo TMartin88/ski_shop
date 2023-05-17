@@ -34,26 +34,14 @@
                     {% endfor %}
 
                      <!-- Display the product size formset -->
-                     {{ formset.management_form }}
-                     {% for form in formset %}
-                         {% for field in form %}
-                             {% if field.name == 'size' %}
-                                 <label for="{{ field.id_for_label }}">Size:</label>
-                                 <select name="{{ field.html_name }}" id="{{ field.id_for_label }}">
-                                     {% for size in sizes %}
-                                         {% if size.category == product.category %}
-                                             <option value="{{ size.pk }}" {% if size.pk == field.value %}selected{% endif %}>{{ size.name }}</option>
-                                         {% endif %}
-                                     {% endfor %}
-                                 </select>
-                             {% else %}
-                                 {{ field.label_tag }}: {{ field }}
-                             {% endif %}
-                             {{ field.errors }}
-                         {% endfor %}
-                     {% endfor %}
- 
-                       
+                    {{ formset.management_form }}
+                    {% for form in formset %}
+                        {% for field in form %}
+                            {{ field.label_tag }}: {{ field }}
+                            {{ field.errors }}
+                        {% endfor %}
+                    {% endfor %}
+      
                     <div class="text-right">
                         <a class="btn btn-outline-black rounded-0" href="{% url 'products' %}">Cancel</a>
                         <button class="btn btn-black rounded-0" type="submit">Update Product</button>
