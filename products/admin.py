@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django.db import IntegrityError
 from django.core.exceptions import ObjectDoesNotExist
 from .models import Product, Category
 from product_sizes.models import ProductSize
@@ -42,6 +43,13 @@ class ProductAdmin(admin.ModelAdmin):
 
     ordering = ('sku',)
     inlines = [ProductSizeInline]
+
+    def save_related(self, request, form, formsets, change):
+        try:
+            super().save_related(request, form, formsets, change)
+        except IntegrityError:
+            # Handle the integrity error by displaying an error message
+            self.message_user(request, 'Error: Duplicate combination of product and size.', level='error')
 
 
 class CategoryAdmin(admin.ModelAdmin):
