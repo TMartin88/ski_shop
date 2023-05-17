@@ -47,8 +47,13 @@ class ProductAdmin(admin.ModelAdmin):
     def save_related(self, request, form, formsets, change):
         try:
             super().save_related(request, form, formsets, change)
-        except IntegrityError:
-            # Handle the integrity error by displaying an error message
+        except IntegrityError as e:
+            # Get the formset with the error
+            formset = next((formset for formset in formsets if formset.errors), None)
+            if formset:
+                # Add the error message to the form field causing the integrity error
+                formset.errors[0][0].add_error(formset.errors[0][1].field, str(e))
+            # Display a general error message
             self.message_user(request, 'Error: Duplicate combination of product and size.', level='error')
 
 
