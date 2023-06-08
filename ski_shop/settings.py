@@ -28,7 +28,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY', '')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = 'DEVELOPMENT' in os.environ
 
-ALLOWED_HOSTS = ['skishop.herokuapp.com', 'localhost']
+ALLOWED_HOSTS = ['skishop.herokuapp.com', 'localhost', '8000-tmartin88-skishop-u0b1v9chr8e.ws-eu99.gitpod.io']
 
 # Application definition
 
@@ -214,12 +214,10 @@ if 'DEVELOPMENT' in os.environ:
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
     DEFAULT_FROM_EMAIL = 'skishop@example.com'
 else:
-    EMAIL_BACKEND = 'sendgrid_backend.SendgridBackend'
-    SENDGRID_API_KEY = 'your-sendgrid-api-key'
-    
-    EMAIL_USE_TLS = os.environ.get('EMAIL_USE_TLS')
-    EMAIL_PORT = os.environ.get('EMAIL_PORT')
-    EMAIL_HOST = os.environ.get('EMAIL_HOST')
+     EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+    EMAIL_USE_TLS = True
+    EMAIL_PORT = 587
+    EMAIL_HOST = 'smtp.gmail.com'
     EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
     EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASS')
     DEFAULT_FROM_EMAIL = os.environ.get('EMAIL_HOST_USER')
