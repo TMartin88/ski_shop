@@ -3,13 +3,9 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.db.models.functions import Lower
-from django.forms import modelform_factory, modelformset_factory
 
 from .models import Product, Category
-from .forms import ProductForm, ProductSizeForm
-from product_sizes.models import ProductSize
-from sizes.models import Size
-
+from .forms import ProductForm
 
 def all_products(request):
     """ A view to show all products, including sorting and search queries """
@@ -108,47 +104,23 @@ def edit_product(request, product_id):
 
     product = get_object_or_404(Product, pk=product_id)
 
-    ProductSizeForm = modelform_factory(ProductSize, fields=['size'])
-
-    ProductSizeFormSet = modelformset_factory(
-        ProductSize,
-        form=ProductSizeForm,
-        extra=1,
-        can_delete=True
-        )
-
     if request.method == 'POST':
         form = ProductForm(request.POST, request.FILES, instance=product)
-        formset = ProductSizeFormSet(request.POST, queryset=ProductSize.objects.filter(product=product))
-    
-        if form.is_valid() and formset.is_valid():
+
+        if form.is_valid():
             form.save()
-            formset.save()
-
-            # Delete instances marked for deletion
-            for deleted_form in formset.deleted_forms:
-                if deleted_form.instance.id is not None:
-                    deleted_form.instance.delete()
-
             messages.success(request, 'Successfully updated product!')
             return redirect(reverse('product_detail', args=[product.id]))
         else:
             messages.error(request, 'Failed to update product. Please ensure the form is valid.')
     else:
         form = ProductForm(instance=product)
-        formset = ProductSizeFormSet(queryset=ProductSize.objects.filter(product=product))
-
-        # Filter the sizes queryset based on the product category
-        category = product.category
-        formset.forms[0].fields['size'].queryset = Size.objects.filter(category=category)
-
         messages.info(request, f'You are editing {product.name}')
 
     template = 'products/edit_product.html'
     context = {
         'form': form,
         'product': product,
-        'formset': formset,
     }
 
     return render(request, template, context)

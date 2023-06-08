@@ -33,21 +33,7 @@
                         {% endif %}
                     {% endfor %}
 
-                    <!-- Display the product size formset -->
-                    {{ formset.management_form }}
-                    {% for form in formset %}
-                        <div class="formset-row">
-                            <div class="formset-field">
-                                {{ form.size.label_tag }}: {{ form.size }}
-                                {{ form.size.errors }}
-                            </div>
-                            <div class="formset-field">
-                                {{ form.DELETE }}
-                                {{ form.DELETE.label_tag }}
-                            </div>
-                        </div>
-                    {% endfor %}
-  
+                    
                     <div class="text-right">
                         <a class="btn btn-outline-black rounded-0" href="{% url 'products' %}">Cancel</a>
                         <button class="btn btn-black rounded-0" type="submit">Update Product</button>
