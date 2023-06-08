@@ -26,4 +26,4 @@ class ProductForm(forms.ModelForm):
 class ProductSizeForm(forms.ModelForm):
     class Meta:
         model = ProductSize
-        fields = ['size']
+        fields = ['product','size']
