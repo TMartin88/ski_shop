@@ -14,40 +14,32 @@ def all_product_sizes(request):
 
     product_sizes = ProductSize.objects.select_related('product', 'size', 'category')
 
-    query = None
-    categories = None
-    sort = None
-    direction = None
+    query = request.GET.get('q')
+    categories = request.GET.getlist('category')
+    sort = request.GET.get('sort', 'name')
+    direction = request.GET.get('direction')
 
-    if request.GET:
-        if 'sort' in request.GET:
-            sortkey = request.GET['sort']
-            sort = sortkey
-            if sortkey == 'name':
-                sortkey = 'size__name'
-            if sortkey == 'category':
-                sortkey = 'category__name'
-            if 'direction' in request.GET:
-                direction = request.GET['direction']
-                if direction == 'desc':
-                    sortkey = f'-{sortkey}'
-            product_sizes = product_sizes.order_by(sortkey)
+    if query:
+        queries = Q(size__name__icontains=query) | Q(size__friendly_name__icontains=query) | Q(category__name__icontains=query)
+        product_sizes = product_sizes.filter(queries)
 
-        if 'category' in request.GET:
-            categories = request.GET['category'].split(',')
-            product_sizes = product_sizes.filter(category__name__in=categories)
-            categories = Category.objects.filter(name__in=categories)
+    if categories:
+        product_sizes = product_sizes.filter(category__name__in=categories)
+        categories = Category.objects.filter(name__in=categories)
 
-        if 'q' in request.GET:
-            query = request.GET['q']
-            if not query:
-                messages.error(request, "You didn't enter any search criteria!")
-                return redirect('all_product_sizes')
+    if sort == 'name':
+        sortkey = 'size__name'
+    elif sort == 'category':
+        sortkey = 'category__name'
+    else:
+        sortkey = 'product__name'
 
-            queries = Q(size__name__icontains=query) | Q(size__friendly_name__icontains=query) | Q(category__name__icontains=query)
-            product_sizes = product_sizes.filter(queries)
+    if direction == 'desc':
+        sortkey = f'-{sortkey}'
 
-    current_sorting = f'{sort}_{direction}'
+    product_sizes = product_sizes.order_by(sortkey)
+
+    current_sorting = f'{sort}_{direction}' if sort and direction else None
 
     context = {
         'product_sizes': product_sizes,

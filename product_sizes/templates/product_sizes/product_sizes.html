@@ -20,12 +20,22 @@
     <div class="container-fluid mt-3" id="size-list">
       <form method="GET">
         <div class="input-group mb-3">
-          <input type="text" class="form-control" name="q" placeholder="Search...">
+          <input type="text" class="form-control" name="q" placeholder="Search..." value="{{ search_term }}">
           <div class="input-group-append">
             <button class="btn btn-outline-secondary" type="submit">Search</button>
           </div>
         </div>
-      </form>
+        <div class="input-group mb-3">
+          <select class="form-control" name="sort">
+            <option value="name" {% if current_sorting == 'name' %}selected{% endif %}>Sort by Name</option>
+            <option value="category" {% if current_sorting == 'category' %}selected{% endif %}>Sort by Category</option>
+            <option value="size" {% if current_sorting == 'size' %}selected{% endif %}>Sort by Size</option>
+          </select>
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary" type="submit">Sort</button>
+          </div>
+        </div>
+      </form>      
       <h1>Product Size List</h1>
       <figure id="swappera" class="wp-block-table">
         <div style="overflow-x: auto;">
