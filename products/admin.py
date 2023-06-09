@@ -20,6 +20,15 @@ class ProductSizeInline(admin.TabularInline):
                     kwargs["queryset"] = Size.objects.filter(category=product.category)
                 except Product.DoesNotExist:
                     pass
+        elif db_field.name == "category":
+            # Set the default category to the product's category
+            if request.resolver_match.view_name == 'admin:products_product_change':
+                product_id = request.resolver_match.kwargs.get('object_id')
+                try:
+                    product = Product.objects.get(pk=product_id)
+                    kwargs["initial"] = product.category
+                except Product.DoesNotExist:
+                    pass
         return super().formfield_for_foreignkey(db_field, request, **kwargs)
 
     def delete_queryset(self, request, queryset):

@@ -12,7 +12,8 @@ from .forms import ProductSizeForm
 def all_product_sizes(request):
     """ A view to show all product sizes, including sorting and search queries """
 
-    product_sizes = Size.objects.filter(category__product__isnull=False)
+    product_sizes = ProductSize.objects.select_related('product', 'size', 'category')
+
     query = None
     categories = None
     sort = None
@@ -23,8 +24,7 @@ def all_product_sizes(request):
             sortkey = request.GET['sort']
             sort = sortkey
             if sortkey == 'name':
-                sortkey = 'lower_name'
-                product_sizes = product_sizes.annotate(lower_name=Lower('name'))
+                sortkey = 'size__name'
             if sortkey == 'category':
                 sortkey = 'category__name'
             if 'direction' in request.GET:
@@ -42,9 +42,9 @@ def all_product_sizes(request):
             query = request.GET['q']
             if not query:
                 messages.error(request, "You didn't enter any search criteria!")
-                return HttpResponseRedirect(request.path_info)
+                return redirect('all_product_sizes')
 
-            queries = Q(name__icontains=query) | Q(friendly_name__icontains=query)
+            queries = Q(size__name__icontains=query) | Q(size__friendly_name__icontains=query) | Q(category__name__icontains=query)
             product_sizes = product_sizes.filter(queries)
 
     current_sorting = f'{sort}_{direction}'
@@ -61,14 +61,28 @@ def all_product_sizes(request):
 
 @login_required
 def add_product_size(request):
-    form = ProductSizeForm(request.POST or None)
+    """ Add a product size """
+    if not request.user.is_superuser:
+        messages.error(request, 'Sorry, only store owners can do that.')
+        return redirect(reverse('home'))
 
     if request.method == 'POST':
+        form = ProductSizeForm(request.POST)
         if form.is_valid():
-            form.save()
-            return redirect('product_sizes:list')
+            product_size = form.save()
+            messages.success(request, 'Successfully added product size!')
+            return redirect(reverse('product_sizes'))
+        else:
+            messages.error(request, 'Failed to add product size. Please ensure the form is valid.')
+    else:
+        form = ProductSizeForm()
 
-    return render(request, 'product_sizes/product_sizes.html', context)
+    template = 'product_sizes/add_product_size.html'
+    context = {
+        'form': form,
+    }
+
+    return render(request, template, context)
 
 
 @login_required
