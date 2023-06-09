@@ -26,41 +26,41 @@
           </div>
         </div>
       </form>
-      <h1>Size List</h1>
+      <h1>Product Size List</h1>
       <figure id="swappera" class="wp-block-table">
         <div style="overflow-x: auto;">
           <table id="tabletimeA" class="tabletime">
             <tbody>
               <tr>
-                <th>Name</th>
-                <th>Friendly Name</th>
+                <th>Product</th>
+                <th>Size</th>
                 <th>Category</th>
                 <th colspan="3">Actions</th>
               </tr>
-              {% for size in sizes %}
+              {% for product_size in product_sizes %}
               <tr>
-                <td>{{ size.name }}</td>
-                <td>{{ size.friendly_name }}</td>
-                <td>{{ size.category }}</td>
+                <td>{{ product_size.product.name }}</td>
+                <td>{{ product_size.size.name }}</td>
+                <td>{{ product_size.category.name }}</td>
                 <td>
-                  <a href="{% url 'add_size' %}" aria-label="Add new Size">
+                  <a href="{% url 'add_product_size' %}" aria-label="Add new Product Size">
                     <div class="btn btn-block btn-primary">Add</div>
                   </a>
                 </td>
                 <td>
-                  <a href="{% url 'edit_size' size.id %}" aria-label="Edit Size">
+                  <a href="{% url 'edit_product_size' product_size.id %}" aria-label="Edit Product Size">
                     <div class="btn btn-block btn-primary">Edit</div>
                   </a>
                 </td>
                 <td>
-                  <a href="{% url 'delete_size' size.id %}" aria-label="Delete Size">
+                  <a href="{% url 'delete_product_size' product_size.id %}" aria-label="Delete Product Size">
                     <div class="btn btn-block btn-primary">Delete</div>
                   </a>
                 </td>
               </tr>
               {% empty %}
               <tr>
-                <td>There are no Sizes Set Up yet</td>
+                <td>There are no Product Sizes Set Up yet</td>
               </tr>
               {% endfor %}
             </tbody>
