@@ -16,7 +16,7 @@ def all_product_sizes(request):
 
     query = request.GET.get('q')
     categories = request.GET.getlist('category')
-    sort = request.GET.get('sort', 'product')
+    sort = request.GET.get('sort', 'name')
     direction = request.GET.get('direction')
 
     if query:
@@ -27,12 +27,12 @@ def all_product_sizes(request):
         product_sizes = product_sizes.filter(category__name__in=categories)
         categories = Category.objects.filter(name__in=categories)
 
-    if sort == 'product':
-        sortkey = 'product__name'
+    if sort == 'name':
+        sortkey = 'size__name'
     elif sort == 'category':
         sortkey = 'category__name'
     else:
-        sortkey = 'size__name'
+        sortkey = 'product__name'
 
     if direction == 'desc':
         sortkey = f'-{sortkey}'
