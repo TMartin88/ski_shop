@@ -95,9 +95,8 @@ def get_filtered_products(request):
 
 def get_filtered_sizes(request):
     category_id = request.GET.get('category')
-    product_id = request.GET.get('product')
 
-    sizes = Size.objects.filter(product__category_id=category_id, product_id=product_id).values('id', 'name')
+    sizes = Size.objects.filter(category_id=category_id).values('id', 'name')
 
     return JsonResponse({'sizes': list(sizes)})
 

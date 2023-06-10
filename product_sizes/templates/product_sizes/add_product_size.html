@@ -76,8 +76,6 @@ $(document).ready(function() {
           $.each(data.products, function(index, product) {
             productSelect.append('<option value="' + product.id + '">' + product.name + '</option>');
           });
-          // Call the updateSizeOptions function after updating the product options
-          updateSizeOptions();
         },
         error: function(xhr, textStatus, error) {
           console.log(error);
@@ -85,18 +83,16 @@ $(document).ready(function() {
       });
     } else {
       productSelect.empty();
-      sizeSelect.empty();
     }
   }
 
   function updateSizeOptions() {
     var selectedCategory = categorySelect.val();
-    var selectedProduct = productSelect.val();
-    if (selectedProduct) {
+    if (selectedCategory) {
       $.ajax({
         url: '{% url 'get_filtered_sizes' %}',
         method: 'GET',
-        data: { category: selectedCategory, product: selectedProduct },
+        data: { category: selectedCategory },
         success: function(data) {
           sizeSelect.empty();
           $.each(data.sizes, function(index, size) {
@@ -114,13 +110,11 @@ $(document).ready(function() {
 
   categorySelect.on('change', function() {
     updateProductOptions();
-  });
-
-  productSelect.on('change', function() {
     updateSizeOptions();
   });
 
   updateProductOptions();
+  updateSizeOptions();
 });
 </script>
 {% endblock %}
