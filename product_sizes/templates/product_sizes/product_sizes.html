@@ -26,14 +26,14 @@
             </div>
         </div>
         <div class="input-group mb-3">
-            <select class="form-control" name="sort">
-                <option value="name" {% if current_sorting == 'name_asc' %}selected{% endif %}>Sort by Product</option>
-                <option value="category" {% if current_sorting == 'category_asc' %}selected{% endif %}>Sort by Category</option>
-                <option value="size" {% if current_sorting == 'size_asc' %}selected{% endif %}>Sort by Size</option>
-            </select>
-            <div class="input-group-append">
-                <button class="btn btn-outline-secondary" type="submit">Sort</button>
-            </div>
+          <select class="form-control" name="sort">
+            <option value="product" {% if current_sorting == 'product' %}selected{% endif %}>Sort by Product</option>
+            <option value="category" {% if current_sorting == 'category' %}selected{% endif %}>Sort by Category</option>
+            <option value="size" {% if current_sorting == 'size' %}selected{% endif %}>Sort by Size</option>
+          </select>
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary" type="submit">Sort</button>
+          </div>
         </div>
       </form>
       <h1>Product Size List</h1>

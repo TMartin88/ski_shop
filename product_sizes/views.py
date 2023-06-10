@@ -11,12 +11,13 @@ from .forms import ProductSizeForm
 
 def all_product_sizes(request):
     """ A view to show all product sizes, including sorting and search queries """
+
     product_sizes = ProductSize.objects.select_related('product', 'size', 'category')
 
     query = request.GET.get('q')
     categories = request.GET.getlist('category')
-    sort = request.GET.get('sort', 'name')
-    direction = request.GET.get('direction', 'asc')  # Set a default direction
+    sort = request.GET.get('sort', 'product')  # Update the default sort to 'product'
+    direction = request.GET.get('direction')
 
     if query:
         queries = Q(size__name__icontains=query) | Q(size__friendly_name__icontains=query) | Q(category__name__icontains=query)
@@ -26,12 +27,12 @@ def all_product_sizes(request):
         product_sizes = product_sizes.filter(category__name__in=categories)
         categories = Category.objects.filter(name__in=categories)
 
-    if sort == 'name':
-        sortkey = 'size__name'
+    if sort == 'product':  # Update to 'product' instead of 'name'
+        sortkey = 'product__name'
     elif sort == 'category':
         sortkey = 'category__name'
     else:
-        sortkey = 'product__name'
+        sortkey = 'size__name'
 
     if direction == 'desc':
         sortkey = f'-{sortkey}'
