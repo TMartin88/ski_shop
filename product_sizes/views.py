@@ -7,6 +7,7 @@ from products.models import Product, Category
 from sizes.models import Size
 from .models import ProductSize
 from .forms import ProductSizeForm
+from django.http import JsonResponse
 
 
 def all_product_sizes(request):
@@ -83,6 +84,14 @@ def add_product_size(request):
     }
 
     return render(request, template, context)
+
+
+@login_required
+def get_filtered_products(request):
+    category_id = request.GET.get('category')
+    products = Product.objects.filter(category_id=category_id).values('id', 'name')
+
+    return JsonResponse({'products': list(products)})
 
 
 @login_required
