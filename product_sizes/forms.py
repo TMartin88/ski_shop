@@ -7,7 +7,7 @@ from sizes.models import Size
 class ProductSizeForm(forms.ModelForm):
     class Meta:
         model = ProductSize
-        fields = ['product', 'size', 'category']
+        fields = ['product', 'size', 'category',]
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
