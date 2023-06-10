@@ -1,7 +1,6 @@
 from django import forms
-from .models import ProductSize
+from .models import ProductSize, Size
 from products.models import Product, Category
-from sizes.models import Size
 
 
 class ProductSizeForm(forms.ModelForm):
