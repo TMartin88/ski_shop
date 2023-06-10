@@ -74,6 +74,8 @@ def add_product_size(request):
             messages.success(request, 'Successfully added product size!')
             return redirect(reverse('product_sizes'))
         else:
+            # Print form errors for debugging
+            print(form.errors)
             messages.error(request, 'Failed to add product size. Please ensure the form is valid.')
     else:
         form = ProductSizeForm()
