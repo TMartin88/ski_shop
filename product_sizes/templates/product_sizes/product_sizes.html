@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block extra_css %}
-<link rel="stylesheet" href="{% static 'sizes/css/sizes.css' %}">
+<link rel="stylesheet" href="{% static 'product_sizes/css/product_sizes.css' %}">
 {% endblock %}
 
 {% block page_header %}
@@ -17,22 +17,12 @@
 <div class="overlay"></div>
 <div class="container">
   <div class="row">
-    <div class="container-fluid mt-3" id="size-list">
+    <div class="container-fluid mt-3" id="product-size-list">
       <form method="GET">
         <div class="input-group mb-3">
-            <input type="text" class="form-control" name="q" placeholder="Search..." value="{{ search_term }}">
-            <div class="input-group-append">
-                <button class="btn btn-outline-secondary" type="submit">Search</button>
-            </div>
-        </div>
-        <div class="input-group mb-3">
-          <select class="form-control" name="sort">
-            <option value="product" {% if current_sorting == 'product' %}selected{% endif %}>Sort by Product</option>
-            <option value="category" {% if current_sorting == 'category' %}selected{% endif %}>Sort by Category</option>
-            <option value="size" {% if current_sorting == 'size' %}selected{% endif %}>Sort by Size</option>
-          </select>
+          <input type="text" class="form-control" name="q" placeholder="Search...">
           <div class="input-group-append">
-            <button class="btn btn-outline-secondary" type="submit">Sort</button>
+            <button class="btn btn-outline-secondary" type="submit">Search</button>
           </div>
         </div>
       </form>
@@ -49,9 +39,9 @@
               </tr>
               {% for product_size in product_sizes %}
               <tr>
-                <td>{{ product_size.product.name }}</td>
-                <td>{{ product_size.size.name }}</td>
-                <td>{{ product_size.category.name }}</td>
+                <td>{{ product_size.product }}</td>
+                <td>{{ product_size.size }}</td>
+                <td>{{ product_size.category }}</td>
                 <td>
                   <a href="{% url 'add_product_size' %}" aria-label="Add new Product Size">
                     <div class="btn btn-block btn-primary">Add</div>
