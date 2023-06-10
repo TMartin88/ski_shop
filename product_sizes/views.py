@@ -86,6 +86,22 @@ def add_product_size(request):
     return render(request, template, context)
 
 
+def get_filtered_products(request):
+    category_id = request.GET.get('category')
+    products = Product.objects.filter(category_id=category_id).values('id', 'name')
+
+    return JsonResponse({'products': list(products)})
+
+
+def get_filtered_sizes(request):
+    category_id = request.GET.get('category')
+    product_id = request.GET.get('product')
+
+    sizes = Size.objects.filter(product__category_id=category_id, product_id=product_id).values('id', 'name')
+
+    return JsonResponse({'sizes': list(sizes)})
+
+
 @login_required
 def edit_product_size(request, product_size_id):
     product_size = get_object_or_404(ProductSize, pk=pk)
