@@ -43,4 +43,52 @@
         </div>            
     </div>
 </div>
+
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+$(document).ready(function() {
+  // Get the category select element
+  var categorySelect = $('#id_category');
+  // Get the product select element
+  var productSelect = $('#id_product');
+
+  // Function to update the product options based on the selected category
+  function updateProductOptions() {
+    var selectedCategory = categorySelect.val();
+    if (selectedCategory) {
+      // Make an AJAX request to retrieve the filtered products
+      $.ajax({
+        url: '{% url 'get_filtered_products' %}',
+        method: 'GET',
+        data: { category: selectedCategory },
+        success: function(data) {
+          // Clear the current product options
+          productSelect.empty();
+          // Add the new filtered product options
+          $.each(data.products, function(index, product) {
+            productSelect.append('<option value="' + product.id + '">' + product.name + '</option>');
+          });
+        },
+        error: function(xhr, textStatus, error) {
+          console.log(error);
+        }
+      });
+    } else {
+      // If no category is selected, clear the product options
+      productSelect.empty();
+    }
+  }
+
+  // Attach an event listener to the category select element
+  categorySelect.on('change', function() {
+    updateProductOptions();
+  });
+
+  // On page load, call the updateProductOptions function to set the initial product options
+  updateProductOptions();
+});
+</script>
 {% endblock %}
