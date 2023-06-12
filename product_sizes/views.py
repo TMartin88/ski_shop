@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
@@ -40,7 +40,7 @@ def all_product_sizes(request):
             query = request.GET['q']
             if not query:
                 messages.error(request, "You didn't enter any search criteria!")
-                return redirect('product_sizes')
+                return redirect('all_product_sizes')
 
             queries = Q(product__name__icontains=query) | \
                       Q(size__name__icontains=query) | \
@@ -57,7 +57,7 @@ def all_product_sizes(request):
         'current_sorting': current_sorting,
     }
 
-    return render(request, 'product_sizes/product_sizes.html', context)
+    return render(request, 'product_sizes/all_product_sizes.html', context)
 
 
 @login_required
@@ -72,7 +72,7 @@ def add_product_size(request):
         if form.is_valid():
             product_size = form.save()
             messages.success(request, 'Successfully added product size!')
-            return redirect(reverse('product_sizes'))
+            return redirect(reverse('all_product_sizes'))
         else:
             # Print form errors for debugging
             print(form.errors)
@@ -88,17 +88,48 @@ def add_product_size(request):
     return render(request, template, context)
 
 
+def get_filtered_products(request):
+    category_id = request.GET.get('category')
+    products = Product.objects.filter(category_id=category_id).values('id', 'name')
+
+    return JsonResponse({'products': list(products)})
+
+
+def get_filtered_sizes(request):
+    category_id = request.GET.get('category')
+
+    sizes = Size.objects.filter(category_id=category_id).values('id', 'name')
+
+    return JsonResponse({'sizes': list(sizes)})
+
+
 @login_required
 def edit_product_size(request, product_size_id):
-    product_size = get_object_or_404(ProductSize, pk=pk)
-    form = ProductSizeForm(request.POST or None, instance=product_size)
+    """Edit a product size in the store"""
+    if not request.user.is_superuser:
+        messages.error(request, 'Sorry, only store owners can do that.')
+        return redirect(reverse('home'))
 
+    product_size = get_object_or_404(ProductSize, pk=product_size_id)
     if request.method == 'POST':
+        form = ProductSizeForm(request.POST, instance=product_size)
         if form.is_valid():
             form.save()
-            return redirect('product_sizes:list')
+            messages.success(request, 'Successfully updated product size!')
+            return redirect(reverse('all_product_sizes'))
+        else:
+            messages.error(request, 'Failed to update product size. Please ensure the form is valid.')
+    else:
+        form = ProductSizeForm(instance=product_size)
+        messages.info(request, f'You are editing {product_size.product} - {product_size.size} - {product_size.category}')
 
-    return render(request, 'product_sizes/form.html', {'form': form})
+    template = 'sizes/edit_product_size.html'
+    context = {
+        'form': form,
+        'product_size': product_size,
+    }
+
+    return render(request, template, context)
 
 
 @login_required

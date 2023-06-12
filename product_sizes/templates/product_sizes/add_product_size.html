@@ -46,7 +46,7 @@
                 </div>
 
                 <div class="text-right">
-                    <a class="btn btn-outline-black rounded-0" href="{% url 'product_sizes' %}">Cancel</a>
+                    <a class="btn btn-outline-black rounded-0" href="{% url 'all_product_sizes' %}">Cancel</a>
                     <button class="btn btn-black rounded-0" type="submit">Add Product Size</button>
                 </div>
             </form>
@@ -54,4 +54,65 @@
     </div>
 </div>
 
+{% endblock %}
+
+{% block extra_js %}
+<script>
+$(document).ready(function() {
+  var categorySelect = $('#id_category');
+  var productSelect = $('#id_product');
+  var sizeSelect = $('#id_size');
+
+  function updateProductOptions() {
+    var selectedCategory = categorySelect.val();
+    if (selectedCategory) {
+      $.ajax({
+        url: "{% url 'get_filtered_products' %}",
+        method: 'GET',
+        data: { category: selectedCategory },
+        success: function(data) {
+          productSelect.empty();
+          $.each(data.products, function(index, product) {
+            productSelect.append('<option value="' + product.id + '">' + product.name + '</option>');
+          });
+        },
+        error: function(xhr, textStatus, error) {
+          console.log(error);
+        }
+      });
+    } else {
+      productSelect.empty();
+    }
+  }
+
+  function updateSizeOptions() {
+    var selectedCategory = categorySelect.val();
+    if (selectedCategory) {
+      $.ajax({
+        url: "{% url 'get_filtered_sizes' %}",
+        method: 'GET',
+        data: { category: selectedCategory },
+        success: function(data) {
+          sizeSelect.empty();
+          $.each(data.sizes, function(index, size) {
+            sizeSelect.append('<option value="' + size.id + '">' + size.name + '</option>');
+          });
+        },
+        error: function(xhr, textStatus, error) {
+          console.log(error);
+        }
+      });
+    } else {
+      sizeSelect.empty();    }
+  }
+
+  categorySelect.on('change', function() {
+    updateProductOptions();
+    updateSizeOptions();
+  });
+
+  updateProductOptions();
+  updateSizeOptions();
+});
+</script>
 {% endblock %}
