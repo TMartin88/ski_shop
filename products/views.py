@@ -5,6 +5,7 @@ from django.db.models import Q
 from django.db.models.functions import Lower
 
 from .models import Product, Category
+from product_sizes.models import ProductSize
 from .forms import ProductForm
 
 def all_products(request):
@@ -62,8 +63,11 @@ def product_detail(request, product_id):
 
     product = get_object_or_404(Product, pk=product_id)
 
+    product_sizes = product.product_sizes.all()
+
     context = {
         'product': product,
+        'product_sizes': product_sizes,
     }
 
     return render(request, 'products/product_detail.html', context)

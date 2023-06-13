@@ -6,7 +6,7 @@ from django.db.models.functions import Lower
 from products.models import Product, Category
 from sizes.models import Size
 from .models import ProductSize
-from .forms import ProductSizeForm
+from .forms import ProductSizeEditForm, ProductSizeAddForm
 from django.http import JsonResponse
 
 
@@ -78,7 +78,7 @@ def add_product_size(request):
             print(form.errors)
             messages.error(request, 'Failed to add product size. Please ensure the form is valid.')
     else:
-        form = ProductSizeForm()
+        form = ProductSizeAddForm()
 
     template = 'product_sizes/add_product_size.html'
     context = {
@@ -105,14 +105,20 @@ def get_filtered_sizes(request):
 
 @login_required
 def edit_product_size(request, product_size_id):
-    """Edit a product size in the store"""
     if not request.user.is_superuser:
         messages.error(request, 'Sorry, only store owners can do that.')
         return redirect(reverse('home'))
 
     product_size = get_object_or_404(ProductSize, pk=product_size_id)
+    category_name = product_size.category.name
+    product_name = product_size.product.name
+
     if request.method == 'POST':
-        form = ProductSizeForm(request.POST, instance=product_size)
+        if product_size_id:
+            form = ProductSizeEditForm(request.POST, instance=product_size)
+        else:
+            form = ProductSizeAddForm(request.POST)
+        
         if form.is_valid():
             form.save()
             messages.success(request, 'Successfully updated product size!')
@@ -120,13 +126,18 @@ def edit_product_size(request, product_size_id):
         else:
             messages.error(request, 'Failed to update product size. Please ensure the form is valid.')
     else:
-        form = ProductSizeForm(instance=product_size)
-        messages.info(request, f'You are editing {product_size.product} - {product_size.size} - {product_size.category}')
+        if product_size_id:
+            form = ProductSizeEditForm(instance=product_size)
+        else:
+            form = ProductSizeAddForm()
+        messages.info(request, f'You are editing {product_name} - {product_size.size} - {category_name}')
 
-    template = 'sizes/edit_product_size.html'
+    template = 'product_sizes/edit_product_size.html'
     context = {
         'form': form,
         'product_size': product_size,
+        'category_name': category_name,
+        'product_name': product_name,
     }
 
     return render(request, template, context)
@@ -134,10 +145,12 @@ def edit_product_size(request, product_size_id):
 
 @login_required
 def delete_product_size(request, product_size_id):
-    product_size = get_object_or_404(ProductSize, pk=pk)
+    """ Delete a product size from the store """
+    if not request.user.is_superuser:
+        messages.error(request, 'Sorry, only store owners can do that.')
+        return redirect(reverse('home'))
 
-    if request.method == 'POST':
-        product_size.delete()
-        return redirect('product_sizes:list')
-
-    return render(request, 'product_sizes/delete.html', {'product_size': product_size})
+    product_size = get_object_or_404(ProductSize, pk=product_size_id)
+    product_size.delete()
+    messages.success(request, 'Product Size deleted!')
+    return redirect(reverse('all_product_sizes'))
