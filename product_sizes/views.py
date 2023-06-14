@@ -39,12 +39,15 @@ def all_product_sizes(request):
         if 'q' in request.GET:
             query = request.GET['q']
             if not query:
-                messages.error(request, "You didn't enter any search criteria!")
+                messages.error(
+                    request, "You didn't enter any search criteria!"
+                    )
                 return redirect('all_product_sizes')
 
-            queries = Q(product__name__icontains=query) | \
-                      Q(size__name__icontains=query) | \
-                      Q(category__name__icontains=query)
+            queries = Q(
+                product__name__icontains=query) | \
+                Q(size__name__icontains=query) | \
+                Q(category__name__icontains=query)
 
             product_sizes = product_sizes.filter(queries)
 
@@ -76,7 +79,10 @@ def add_product_size(request):
         else:
             # Print form errors for debugging
             print(form.errors)
-            messages.error(request, 'Failed to add product size. Please ensure the form is valid.')
+            messages.error(
+                request,
+                'Failed to add product size. Please ensure the form is valid.'
+                )
     else:
         form = ProductSizeAddForm()
 
@@ -90,7 +96,8 @@ def add_product_size(request):
 
 def get_filtered_products(request):
     category_id = request.GET.get('category')
-    products = Product.objects.filter(category_id=category_id).values('id', 'name')
+    products = Product.objects.filter(
+        category_id=category_id).values('id', 'name')
 
     return JsonResponse({'products': list(products)})
 
@@ -124,13 +131,21 @@ def edit_product_size(request, product_size_id):
             messages.success(request, 'Successfully updated product size!')
             return redirect(reverse('all_product_sizes'))
         else:
-            messages.error(request, 'Failed to update product size. Please ensure the form is valid.')
+            messages.error(
+                request,
+                'Failed to update product size.  '
+                'Please ensure the form is valid.'
+                )
     else:
         if product_size_id:
             form = ProductSizeEditForm(instance=product_size)
         else:
             form = ProductSizeAddForm()
-        messages.info(request, f'You are editing {product_name} - {product_size.size} - {category_name}')
+        messages.info(
+            request,
+            f'You are editing {product_name} - '
+            '{product_size.size} - {category_name}'
+            )
 
     template = 'product_sizes/edit_product_size.html'
     context = {
