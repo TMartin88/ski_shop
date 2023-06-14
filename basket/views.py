@@ -2,15 +2,13 @@ from django.shortcuts import render, redirect, reverse, HttpResponse, get_object
 from django.contrib import messages
 
 from products.models import Product
-from .contexts import basket_contents
 
 # Create your views here.
 
-
 def view_basket(request):
     """ A view that renders the basket contents page """
-    return render(request, 'basket/basket.html')
 
+    return render(request, 'basket/basket.html')
 
 def add_to_basket(request, item_id):
     """ Add a quantity of the specified product to the shopping basket """
@@ -44,7 +42,7 @@ def add_to_basket(request, item_id):
 
     request.session['basket'] = basket
     return redirect(redirect_url)
-
+    
 
 def adjust_basket(request, item_id):
     """Adjust the quantity of the specified product to the specified amount"""
