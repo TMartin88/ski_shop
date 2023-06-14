@@ -2,13 +2,13 @@ from django.shortcuts import render, redirect, reverse, HttpResponse, get_object
 from django.contrib import messages
 
 from products.models import Product
+from .contexts import basket_contents
 
 # Create your views here.
 
 
 def view_basket(request):
     """ A view that renders the basket contents page """
-
     return render(request, 'basket/basket.html')
 
 
