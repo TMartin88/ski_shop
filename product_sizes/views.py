@@ -81,7 +81,7 @@ def add_product_size(request):
             print(form.errors)
             messages.error(
                 request,
-                'Failed to add product size. Please ensure the form is valid.'
+                'Failed to add product size. THis probably already exists.'
                 )
     else:
         form = ProductSizeAddForm()
