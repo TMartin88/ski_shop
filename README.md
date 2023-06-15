@@ -203,60 +203,55 @@ This is all working as expected. Wooly Hats is now gone.
 
 **Please note that because sizes share the same category model as Products, sizes can only be assigned to Products of the same category**
 
-Add Product Size        |  Size Added
+Add Product Size        |  Product Size Added
 :-----------------:|:-----------------:
- ![](/static/readme_images/addproductsize.webp)  |  ![](/static/readme_images/sizeadded.webp)
+ ![](/static/readme_images/addproductsize.webp)  |  ![](/static/readme_images/productsizeadded.webp )
 
 This is all working as expected.
 
-Edit Size       |  Size Edited
+Edit Product Size       |  Product Size Edited
 :-----------------:|:-----------------:
- ![](/static/readme_images/editsize.webp)  |  ![](/static/readme_images/sizeedited.webp)
+ ![](/static/readme_images/editproductsize.webp)  |  ![](/static/readme_images/productsizeedited.webp)
 
- This is all working as expected. Rollers Included now in description.
+ This is all working as expected.
 
-Delete Size      |  Size Deleted
+ **Please note there is a bug here the available sizes to edit should be filtered by the category**
+
+Delete Product Size      |  Product Size Deleted
 :-----------------:|:-----------------:
- ![](/static/readme_images/sizeedited.webp)  |  ![](/static/readme_images/sizedeleted.webp)
+ ![](/static/readme_images/productsizeedited.webp)  |  ![](/static/readme_images/productsizedeleted.webp)
 
 
-This is all working as expected. Wooly Hats is now gone.
+This is all working as expected.
 
 -----------------------------
 
+## Django Admin
 
+**Please note all Product, Sizes and Product Size Management functionality is in th admin section.**
 
+Django Admin       |  Product Size Admin
+:-----------------:|:-----------------:
+ ![](/static/readme_images/admin.webp)  |  ![](/static/readme_images/adminproductsize.webp)
 
+ This is all working as expected.
 
-### Logged in Users
+**Note Admin is only available to superusers**
+
+![](/static/readme_images/denied.webp)
+
+-----------------------------
+
+## Search Results Page
 ---
 
-![](https://res.cloudinary.com/dxbarumnj/image/upload/v1677582898/user_diquz2.jpg)
+![](/static/readme_images/search.webp)
 
-Note Admin is not available to regular staff users.
+
+ This is all working as expected.
 
 ----------------------------------
 
-### Search Results Page
----
-
-![](https://res.cloudinary.com/dxbarumnj/image/upload/v1677585347/result_tjuurr.jpg)
-
-This is a Filtered List of Routes set in Card Format which is arrived at from 3 main options:
-
-1. Search in Nav in Header
-
-![](https://res.cloudinary.com/dxbarumnj/image/upload/v1677584835/search_w4fudn.jpg)
-
-2. The Google Map is a visual interactive Search option for Commuters on Home Page
-
-![](https://res.cloudinary.com/dxbarumnj/image/upload/v1677615191/map_dcunfc.jpg)
-
-3. The Dynamic Filter Search on Home Page
-
-![](https://res.cloudinary.com/dxbarumnj/image/upload/v1677585139/table_gzb7g2.jpg)
-
-------------------------------
 
 ### Single Page
 ---
