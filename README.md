@@ -1,131 +1,71 @@
-# Schedule Manager <img align="right" width="75" height="75" src="static/readme_images/favicon-32x32.png">
-
-- **LLC** denotes Local Link Cork
-- **Staff** denotes LLC Route & Timetable Management Staff
-- **Commuters** denotes people travelling or wishing to travel on Routes
-- **Routes** are often known as Services or Schedules.
-
----------------------------
+# Ski Shop <img align="right" width="75" height="75" src="static/readme_images/favicon.png">
 
 # Site Goals
 ---
 
-Schedule Manager is an application developed in Django for LLC Timetable and Route Management staff.
+Ski Shop is an online ecommerce shop developed in Django.
 
-These staff members typically have no coding abilities whatsoever.
+This shop is initially targetting the Irish market.
 
-This application is designed to enable staff to setup Routes and Urban Centres.
+The shop is populated with great value offers of leading brands of skis, snowboards and accessories.
 
-This application is an assist for LLC staff engaged in Timetable Management to easily publish timetable revisions for public viewing.   
+- **For the purpose of the project submission I have retained the products and images form Boutique Ado, but when in production the products will be ski and snowboard products and images.**
 
-Schedule Manager is useful by allowing LLC staff to manipulate and design timetables to best display the data to the public.
+The shop has most of the functionality you would expect from an online store.
 
-Schedule Manager is particularly useful for the public as it features dynamic search so commuters can easily find the Route that suits their needs.
-
-Schedule Manager has 4 main apps:
-
-- Maps (maps):
-    This App sets up the data from model urban to be displayed as icons on Google Maps.
-- Schedules (schedules):
-    This is the App for Route Management using Posts where each Post is a Route.
-- Urban (urban):
-    This is the App for Urban Centre Management. Each Urban centre is an icon on the map.
-- User Search (user_search):
-    This is the App for the dynamic filter search on the Home Page and the Search in the Nav Bar.
+Products by Category
+Search
+Basket
+Checkout
 
 ------------------------------------
 
-# Application           
----
-
-![](https://res.cloudinary.com/dxbarumnj/image/upload/v1677615381/site_fsexbv.jpg)
+![](/static/readme_images/shopfront.webp)
 
 ------------------------------------
-
-# Motivation
----
-
-- Working part time with LLC and in association with Steve Ellis Operations Co-Ordinator of LLC, we can identify that we need to improve Timetable Management.
-- These Timetables need to be controlled and managed.
-- Staff prefer to work with Excel for Timetables edits.
-- These Timetables need to be visible to the public.
-- Wordpress was initially the preferred platform to publish timetables for public viewing but it is restricitive.
-- So developing something in a framework, we can control is more suitable.
-- Django allows us to deploy to the Cloud which is a fast scaleable environment.
-
-------------------------------------
-
-# GDPR and Timetable Data
----
-
-- Thanks to Steve Ellis Operations Co-Ordinator of LLC for permission to use Timetable data.
-- The Timetable data is already in the public domain.
-
-------------------------------------
-
-# Staff Requirements
----
-
-- Staff Users who have no programming skills need to be able to publish LLC routes and timetables so they are available to the public.
-    - This application allows them to work without HTML or CSS skills, as they have an application that makes the html for them, then using copy and paste skills they can publish to a post. The styling of the timetable is managed within the template design and style.css
-- Staff Users need to provide additional information in relation to routes.
-    - The additional fields in Post model allow for this.
-
-    - To assist this we created a seperate Python App to take Excel timetables loaded to Google Sheets and convert them to properly formatted HTML tables:
-        - https://timetable-sheets.herokuapp.com
-        - https://github.com/TMartin88/SheetTable
-
-- **We will bring that Python Project into this project in the next phase of development.**
 
 # User Stories
 ---
 
-## Commuters
+## Shoppers
 ---
 
-- Commuters need to be able plan trips around LLC routes.
-    - Because all routes and associated timetables are published and maintained the commuter has up to date information.
-- Commuters need to be able to view more than 1 route at a time to make comparisons of suitability.
-    - The Routes are listed and can filtered to by a commuter to match their needs.
-- Commuters need to be able to Comment on Routes to share their travel experience. 
-    - The Comment functionality allows for this.
-- Commuters need to be able to give a nod of approval or otherwise. 
-    - The Like functionality allows for this.
-- Commuters need an interactive way of searching for timetables.
-    - The Google Map allows the commuter to click an icon for an urban centre. This negates the need for using the keyboard.
-- Commuters need to be able to refine search results.
-    - The dynamic search table on the homepage allows for filtering by dates and times etc.
-    - The search in the nav bar allows for a search for timetable data including stops etc.   
-- Commuter need to be able to view timetables on Mobile.
-    - The way the table is setup for scrolling x and y allows the commuter to easily navigate an individual timetable.
-- Commuter need to be able to switch timetables views from inbound to outbound.
-    - The change direction button allows for this.
+- As a shopper, I want to be able to view a list of products, so that so that I can review them with a view to purchase.
+    - This is in place with search and product categories
+- As a shopper, I want see details about a product, so that I can make informed decisions on whether to purchase or not.
+    - There is a product detail page that tells the shopper more about products.
+- As a shopper, I want see how much I have spent, so that I can make sure I am happy with the amount. 
+    - The basket tots up all purchases in the basket and a toast notifies the shopper.
+- As a shopper, I want have a shopping basket, so that I can see what I intend to buy and the cost.
+    - The basket keeps the shopper informed of the cost..
+- As a shopper, I want have a checkout option, so that so that I can pay for my basket contents.
+    - The shopper has secure checkout
+    - Payment through stripe
+    - Notification  
+- As a shopper, I want see delivery costs, so that I am not caught out by extra unforeseen costs.
+    - the shopper can see the delivery costs clearly displayed
+    - once we start to ship internationally we will have a shipping calculator
+- As a shopper, I want to view by categories, so that I can easily identify products of interest to me.
+    - Products are displayed with categorie splits.
+- As a shopper, I want to be able to create a profile, so that my shopping experience can be a more personal experience.
+    - The shopper can register and create a profile.
 
-## LLC
+## Shop Owner
 ---
 
-- Staff Users need to be able to change Timetable data on a regular basis and get the results published without delay.
-    - The level of automation here minimises the time delay and allow the user to quickly publish to Timetable Manager.
-- Bus Company needs to ensure the presentation of timetable data is consistent with the Brand.
-    - Fonts Logos and Colour styles match the brand. 
-- Bus Company needs to control access to schedule maintenance.
-    - A superuser account is required to access admin panel.
-- Bus Company needs to control access to Comments and Likes.
-    - A user account is required to access this functionality.
-- Bus Company needs to allow for Schedules to be input as Draft and not viewable by the public.
-    - The post approval functionality manages this.
-- Bus Company needs to ensure all Comments are moderated.
-    - The comment approval functionality manages this.
-- Bus Company needs a CRUD to manage all schedules.
-    - The Admin Panel functionality manages this.
-- Bus Company needs a implement pagination on the front end for ease of navigation.
-    - Pagination is applied where applicable.
-- Staff Users need to be able to manage icons on the Google Map.
-    - The Urban CRUD works well here. It is a simple interface so staff users canc ontrol where icons appear.
-- Staff users need to be able to provide PDF version of the timetables.
-    - PDFs in LLC Dropbox are available for Commuters via the PDF button.
-- Bus Company needs a restrict urban centre icons to the applicable operating area of the LLC.
-    - Bounds are set on Map scrolling.
+- As a shop owner, I want shoppers to register as account holders, so that I can personalise their shopping experience.
+    - the functionality for registration is straighforward and easy.
+- As a shop owner, I want a web store, so that buyers can browse the store and buy products.
+    - The shop is hosted live on heroku and available for users to shop online.
+- As a shopowner, I want to keep my shopper informed throughout the shopping experience, so that the shoppers are well informed and feel valued.
+    - The shopping experience keeps th euser well informed.
+- As a shop owner, I want to manage products, so that I can keep the site up to date.
+    - Product management as all the functionality required
+- As a shop owner, I want manage sizes and size availability for products, so that product and size availability is accurate for shoppers.
+    - There is a basic sizes functionality in place
+    - In the next version there will be a powerful size suite which allows for assigning sizes to products
+    - This suite is already in place
+    - It is not implemented into the shopping experience just yet.
 
 --------------------------------
 
@@ -137,13 +77,9 @@ Schedule Manager has 4 main apps:
 
 This is a GUI application which has been designed to work across all devices.
 
-Using the MVC framework enables the presentation of data in an efficient secure manner.
-
 Bootstrap allows for seamless responsiveness.
 
-Using an interactive Google Map with underlying API calls enhances the visual impact.
-
-The main Header Nav section is set as a sticky so the nav is always available and maintains the presence of the logo.
+The site header and brand is preserved at the top of the page.
 
 ------------------------
 
@@ -153,22 +89,58 @@ The main Header Nav section is set as a sticky so the nav is always available an
 ### Main Menu
 ---
  
-Site navigation is primarily by way of a Main Menu.
+Site navigation is primarily by way of:
 
-Apart from 'Home' which is constant.
+- Main Menu.
+    - All Products
+    - Skis
+    - Snowboards
+    - Accessories
+    - Others
 
-The Nav is split into 2 main layouts:
+- Top Line
+    - Search
+    - My Account
+    - Basket
 
-- Not Logged in
-    - Register
-    - Login
+There are Logged Status changes to the navigation experience for My Account:
 
-- Logged in
-    - Urban Centres
-    - Admin
-    - Logout
+Not Logged In          |  Logged In   | SuperUser     
+:-----------------:|:-----------------:|:-----------------:
+![](/static/readme_images/notloggedin.webp)  |  ![](/static/readme_images/loggedin.webp)  | ![](/static/readme_images/superuser.webp)
 
 ------------------------------
+
+# Manual Testing
+---
+
+## My Account
+
+Signin  |  Signed In         
+:-----------------:|:-----------------:
+![](/static/readme_images/signin.webp)  | ![](/static/readme_images/signedin.webp) 
+This is all working as expected.
+
+My Profile          |  Profile Updated
+:-----------------:|:-----------------:
+![](/static/readme_images/myprofile.webp)  |  ![](/static/readme_images/profileupdated.webp)
+       
+This is all working as expected.
+
+Logout         |  Profile Updated
+:-----------------:|:-----------------:
+ ![](/static/readme_images/logout.webp)  |  ![](/static/readme_images/loggedout.webp)
+
+This is all working as expected.
+
+Register        |  Error Trap | Registered
+:-----------------:|:-----------------:|:-----------------:
+ ![](/static/readme_images/register.webp)  |  ![](/static/readme_images/errortrap.webp) | ![](/static/readme_images/registered.webp)
+
+
+This is all working as expected.
+
+
 
 ### Non Logged in Users
 ---
