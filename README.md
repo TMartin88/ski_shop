@@ -140,22 +140,93 @@ Register        |  Error Trap | Registered
 
 This is all working as expected.
 
-
-
-### Non Logged in Users
+### Logged in Superuser
 ---
 
-![](https://res.cloudinary.com/dxbarumnj/image/upload/v1677583391/app_ziguur.jpg)
+There is additional functionality to superusers. Shop Managers are superusers and responsible for Product Maintenance.
 
-Note the Menu only has Register and Login Options.
+#### Product Management
 
-- Logged in Users (SuperUser)
+Select Category        |  Add Product
+:-----------------:|:-----------------:
+ ![](/static/readme_images/addproduct1.webp)  |  ![](/static/readme_images/addproduct2.webp)
 
-![](https://res.cloudinary.com/dxbarumnj/image/upload/v1677583100/admin_ttzvvd.jpg)
+This is all working as expected.
 
-Note the menu now has Urban Centres and Admin.
+Product Added
+
+![](/static/readme_images/productadded.webp)
+
+
+This is all working as expected.
+
+Edit Product       |  Editing Product
+:-----------------:|:-----------------:
+ ![](/static/readme_images/editproduct.webp)  |  ![](/static/readme_images/editingproduct.webp)
+
+
+Edit Product Update      |  Edited Product
+:-----------------:|:-----------------:
+ ![](/static/readme_images/editing2.webp)  |  ![](/static/readme_images/editedproduct.webp)
+
+
+This is all working as expected.
 
 -----------------------------
+
+#### Sizes Management
+
+**Please note that sizes share the same category model as Products**
+
+Add Size        |  Size Added
+:-----------------:|:-----------------:
+ ![](/static/readme_images/addsize.webp)  |  ![](/static/readme_images/sizeadded.webp)
+
+This is all working as expected.
+
+Edit Size       |  Size Edited
+:-----------------:|:-----------------:
+ ![](/static/readme_images/editsize.webp)  |  ![](/static/readme_images/sizeedited.webp)
+
+ This is all working as expected. Rollers Included now in description.
+
+Delete Size      |  Size Deleted
+:-----------------:|:-----------------:
+ ![](/static/readme_images/sizeedited.webp)  |  ![](/static/readme_images/sizedeleted.webp)
+
+
+This is all working as expected. Wooly Hats is now gone.
+
+-----------------------------
+
+#### Product Sizes Management
+
+**Please note that because sizes share the same category model as Products, sizes can only be assigned to Products of the same category**
+
+Add Product Size        |  Size Added
+:-----------------:|:-----------------:
+ ![](/static/readme_images/addproductsize.webp)  |  ![](/static/readme_images/sizeadded.webp)
+
+This is all working as expected.
+
+Edit Size       |  Size Edited
+:-----------------:|:-----------------:
+ ![](/static/readme_images/editsize.webp)  |  ![](/static/readme_images/sizeedited.webp)
+
+ This is all working as expected. Rollers Included now in description.
+
+Delete Size      |  Size Deleted
+:-----------------:|:-----------------:
+ ![](/static/readme_images/sizeedited.webp)  |  ![](/static/readme_images/sizedeleted.webp)
+
+
+This is all working as expected. Wooly Hats is now gone.
+
+-----------------------------
+
+
+
+
 
 ### Logged in Users
 ---

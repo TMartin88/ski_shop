@@ -71,7 +71,7 @@ def add_product_size(request):
         return redirect(reverse('home'))
 
     if request.method == 'POST':
-        form = ProductSizeForm(request.POST)
+        form = ProductSizeAddForm(request.POST)
         if form.is_valid():
             product_size = form.save()
             messages.success(request, 'Successfully added product size!')
