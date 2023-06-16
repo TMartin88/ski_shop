@@ -385,7 +385,7 @@ This signin challenge appears for all spoof attempts.
 
 - HTML:             All pages were passed through the official https://validator.w3.org/ and no errors were found.
 
-![](https://res.cloudinary.com/dxbarumnj/image/upload/v1677705268/htmlhome_vvn56z.jpg)
+![](/static/readme_images/htmlchecker.webp)
 
 The Default Django Admin Panel does generate this warning:
 
@@ -397,7 +397,7 @@ As this has no negative impact on the app I am ignoring this.
 
 - CSS:              All pages were passed through the official https://jigsaw.w3.org/css-validator/ and no errors were found.
 
-![](https://res.cloudinary.com/dxbarumnj/image/upload/v1677749645/csstest_mtpvhd.jpg)
+![](/static/readme_images/cssw3c.webp)
 
 ## Lighthouse Testing
 ---
@@ -406,29 +406,32 @@ As this has no negative impact on the app I am ignoring this.
 
 home desktop                |  home mobile
 :-----------------:|:-----------------:
-![](https://res.cloudinary.com/dxbarumnj/image/upload/v1677842817/homedesktop_w7v8uk.jpg)  |  ![](https://res.cloudinary.com/dxbarumnj/image/upload/v1677843042/homemobile_b04jcf.jpg)
+![](/static/readme_images/desktophome.webp)  |  ![](/static/readme_images/mobilehome.webp)
 
-**The Performance on Mobile is not good. But Google Maps even though slowing things down is an essential part of the design**
 
 search results desktop               |  search results mobile
 :-----------------:|:-----------------:
-![](https://res.cloudinary.com/dxbarumnj/image/upload/v1677843239/searchdesktop_kqolyw.jpg)  |  ![](https://res.cloudinary.com/dxbarumnj/image/upload/v1677843392/searchmobile_tjgudt.jpg)
+![](/static/readme_images/desktopsearch.webp)  |  ![](/static/readme_images/mobilesearch.webp)
 
-**Performance could be better. Images are being fed from Cloudinary which seems to be a bottleneck**
 
-post detail desktop               |  post detail mobile
+product management desktop               |  product management mobile
 :-----------------:|:-----------------:
-![](https://res.cloudinary.com/dxbarumnj/image/upload/v1677843666/postdetaildesktop_mf1pv8.jpg)  |  ![](https://res.cloudinary.com/dxbarumnj/image/upload/v1677843738/postdetailmobile_o2moac.jpg)
+![](/static/readme_images/productmanagmentdesk.webp)  |  ![](/static/readme_images/productmanagmentmob.webp)
 
-urban desktop               |  urban mobile
+**Performance is low here for mobile particularly. THis iwll be improved in production when I introduce proper appropriate images for products**
+
+
+size management desktop               |  size management mobile
 :-----------------:|:-----------------:
-![](https://res.cloudinary.com/dxbarumnj/image/upload/v1677844413/urbandesktop_bhwhft.jpg)  |  ![](https://res.cloudinary.com/dxbarumnj/image/upload/v1677844049/urbanmobile_cn5zak.jpg)
-
+![](/static/readme_images/sizemanagementdesk.webp)  |  ![](/static/readme_images/sizemanagementmob.webp)
 admin desktop               |  admin mobile
-:-----------------:|:-----------------:
-![](https://res.cloudinary.com/dxbarumnj/image/upload/v1677844158/admindesktop_gtbfaf.jpg)  |  ![](https://res.cloudinary.com/dxbarumnj/image/upload/v1677844248/adminmobile_xwymtn.jpg)
 
-**Scores are not great but this is Django admin panel**
+
+django admin desktop               |  django admin mobile
+:-----------------:|:-----------------:
+![](/static/readme_images/djangoadmindesk.webp)  |  ![](/static/readme_images/djangoadminmob.webp)
+admin desktop               |  admin mobile
+
 
 ## Pycodestyle Testing
 ---
