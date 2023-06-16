@@ -183,12 +183,6 @@ input[name='q']::placeholder {
   }
 }
 
-@media only screen and (max-width: 767px) {
-    .content__formFields {
-        margin-top: 200px;
-    }
-  }
-
 /* Allauth form formatting */
 
 .allauth-form-inner-content p {
