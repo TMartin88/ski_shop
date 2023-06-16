@@ -90,7 +90,7 @@ Good quality images are used for products to attract user attention.
  
 This GUI application is responsive using Bootstrap and looks good on different device screen sizes.
 
-![](https://res.cloudinary.com/dxbarumnj/image/upload/v1677616512/responsive_swgo3h.jpg)
+![](/static/readme_images/responsive.webp)
 
 --------------------------------
 
@@ -237,7 +237,7 @@ This is all working as expected.
 
 -----------------------------
 
-#### Has Sizes
+## Has Sizes
 
 ![](/static/readme_images/hassizes.webp)
 
@@ -277,7 +277,7 @@ Like for instance a pair of Skis will have size options like this:
 
 ## Django Admin
 
-**Please note all Product, Sizes and Product Size Management functionality is in th admin section.**
+**Please note all Product, Sizes and Product Size Management functionality is also in the admin section.**
 
 Django Admin       |  Product Size Admin
 :-----------------:|:-----------------:
