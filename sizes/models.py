@@ -1,5 +1,7 @@
 from django.db import models
 
+from products.models import Product, Category
+
 
 class Size(models.Model):
     name = models.CharField(max_length=254)
