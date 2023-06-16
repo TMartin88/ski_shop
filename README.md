@@ -438,49 +438,34 @@ admin desktop               |  admin mobile
 
 The 3 warnings that are listed are apparently in relation to the docker file and have nothing to do with the code in run.py and so can be ignored.
 
-**All files are clear of Problems apart from settings.py**
-
-## pep8 Testing
+## python3 -m flake8 Testing
 ---
 
-![](https://res.cloudinary.com/dxbarumnj/image/upload/v1678014870/pep8_bd4uzz.jpg)
-
-**All files are clear of Problems apart from settings.py**
-
-3 of the offending lines part of Django core.
-1 offending line is Cloudinary.
+- settings.py ignored
+- vscode warnings are ignored
+- unused admin.py files are ignored
+- migrations line too long warnings are ignored
 
 
-The following code line is too long but anytimne I tried to fix it , the checkout broke so I have left it.
+
+The following code line from checkout views.py is too long but anytime I tried to fix it , the checkout broke so I have left it.
 
 ```
 self.order_total = self.lineitems.aggregate(Sum('lineitem_total'))['lineitem_total__sum'] or 0
 ```
-All vscode warnings are ignored
+The following code line from ski_shop urls.py is required ofr 404 for work.
 
 ```
-./.vscode/arctictern.py
+./ski_shop/urls.py:33:1: F811 redefinition of unused 'handler404' from line 20
 ```
-
-**All Django generated unused Admin.py files are ignored**
-**All migrations line too long warnings are ignored**
-**settings.py line too long warnings are ignored**
-
 
 ## Javascript Testing
 ---
 
 JSHint.com
 
-```
-    /* global google: false */
-    /* global jQuery: false */
-```
 
-**google declaration is part of Google Maps API and to satisfy JSHint it is set to false**
-**jQuery declaration is external and to satisfy JSHint it is set to false**
-
-![](https://res.cloudinary.com/dxbarumnj/image/upload/v1678135372/jshint_yiyvjj.jpg)
+![](/static/readme_images/jshint.webp)
 
 ----
 
