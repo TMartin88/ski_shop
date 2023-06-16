@@ -450,6 +450,23 @@ The 3 warnings that are listed are apparently in relation to the docker file and
 3 of the offending lines part of Django core.
 1 offending line is Cloudinary.
 
+
+The following code line is too long but anytimne I tried to fix it , the checkout broke so I have left it.
+
+```
+self.order_total = self.lineitems.aggregate(Sum('lineitem_total'))['lineitem_total__sum'] or 0
+```
+All vscode warnings are ignored
+
+```
+./.vscode/arctictern.py
+```
+
+**All Django generated unused Admin.py files are ignored**
+**All migrations line too long warnings are ignored**
+**settings.py line too long warnings are ignored**
+
+
 ## Javascript Testing
 ---
 
