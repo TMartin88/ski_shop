@@ -3,9 +3,8 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.db.models.functions import Lower
-from django.shortcuts import render
 
-from .models import Size
+from .models import Size, Category
 from .forms import SizeForm
 
 
@@ -73,7 +72,7 @@ def add_size(request):
     if request.method == 'POST':
         form = SizeForm(request.POST)
         if form.is_valid():
-            size = form.save()
+            form.save()
             messages.success(request, 'Successfully added size!')
             return redirect(reverse('sizes'))
         else:

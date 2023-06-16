@@ -445,8 +445,9 @@ The 3 warnings that are listed are apparently in relation to the docker file and
 - vscode warnings are ignored
 - unused admin.py files are ignored
 - migrations line too long warnings are ignored
-
-
+- products ignored as from boutique Ado
+- profile ignored as from Boutique Ado
+- checkout ignored as from Bouique Ado
 
 The following code line from checkout views.py is too long but anytime I tried to fix it , the checkout broke so I have left it.
 
