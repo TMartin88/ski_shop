@@ -183,6 +183,12 @@ input[name='q']::placeholder {
   }
 }
 
+@media only screen and (max-width: 767px) {
+    #mcjs-popup {
+      position: absolute;
+    }
+  }
+
 /* Allauth form formatting */
 
 .allauth-form-inner-content p {
