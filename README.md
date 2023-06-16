@@ -467,69 +467,33 @@ JSHint.com
 
 ----
 
-## LLC Staff Final Verification
----
-
-When the html code is pasted into the post content, the user can a make a visual comparison in the browser to ensure the results are as expected.
-
-The user is the designer of the timetable (within given parameters of course).
-
-Because the outcome in post content reflects the users Google sheet design, it is up to the user to decide if the outcome is what they planned.
-
-If not, they can amend the HTML table code.
-
----------------------------------
-
 ## Development Transition
 ---
 
 ### Initial Workflow and Design Concept
 ---
 
-This concept project has been developed by me in Wordpress and is live at:
+This online shop is largely based on the BOutique Ado project.
 
-[Local Link Cork](https://www.locallinkcork.ie/) 
+The additional development is based around expanding size options andfunctionality.
 
-Using Elementor as a Site Builder.
+Also Shipping where shipping calculations other than a flat charge is possible.
 
-Wordpress and particularly Elementor are restrictive and sometimes do not play nice.
-The site is slow in performance and requires too many work arounds.
+Unfortunately implementing these in the shopping experience is not completed as yet.
 
-The workflow to get a revised Timetable from Excel to Wordpress is too convoluted and messy.
-
-So we are now moving to Django.
-
-Automation is now much easier and full control of the workflow is possible.
 
 -----------------------------------
 
-### Planned Final Workflow and Design
+### Planned Final Workflow and Design and Future features
 ---
 
-This Project is not the final step but it is a major step forward.
+This Project is not the final step but the building blocks are in place.
 
-The ultimate goal will be to take a revised or new Timetable directly from Excel and Publish.
+The ultimate goal will be to improve this online shop so it can cater ofr international customers.
 
-### Following from Wordpress Project and HTML Builder Project
----
+In addition helpful tools like Size Calculators for the various product categories will be developed.
 
-Wordpress          |  Github
-:-----------------:|:-----------------:
-[Local Link Cork](https://www.locallinkcork.ie/)  |  [Github](https://github.com/TMartin88/htmltablebuilder)
-
-Wordpress Post Classic Block           |  HTML View
-:-----------------:|:-----------------:
-![](https://res.cloudinary.com/dxbarumnj/image/upload/v1678050388/classic_j3tdmz.jpg)  |  ![](https://res.cloudinary.com/dxbarumnj/image/upload/v1678050479/classichtml_vthrz7.jpg)
-
-### Concept Design from Brainstorming
----
-
-![](https://res.cloudinary.com/dxbarumnj/image/upload/v1678051947/conceptdesign_w5nnf8.jpg)
-
-### Final Table Design in ElephantSQL
----
-
-![](https://res.cloudinary.com/dxbarumnj/image/upload/v1678048605/Schedule_Manager_Database_Diagram_crow_s_foot_hikixk.jpg)
+Colors as well as sizes will be implemented in future developments
 
 ---------------------------------
  
@@ -572,7 +536,8 @@ Wordpress Post Classic Block           |  HTML View
 ### Unfixed Bugs
 ---
 
-- No known unfixed bugs.
+- Product Size editing the size dropdown selection box should be filtered by category.
+- The Mailchimp popup is not performing correctly on Mobile Phone.
 
 ----
 
@@ -625,24 +590,13 @@ In Gitpod
 - In Settings ensure Debug = False
 - Ensure all is Pushed and check Git Status
 
-[Please click this link to see it in Heroku](https://schedulemanager.herokuapp.com/)
-
-## Future Features
----
-
-- To bring Fares Calculation https://github.com/TMartin88/farescalculator into this Project
-- To bring HTML Builder https://github.com/TMartin88/htmltablebuilder into this project
-- To remove the Copy and Paste of Timetable to Post content and write it in by code instead.
-- To fully automate the workflow of Timetable updates or additions to Live Published Online.
-
----------------------------------
+[Please click this link to see it in Heroku](https://skishop.herokuapp.com/)
 
 ## Performance Improvements
 ---
 
 - Lighthouse to bring all site ratings close to 100% on all fronts
-    - Google Maps
-    - Cloudinary Images
+    - Product Images
 
 ---------------------------------
  
