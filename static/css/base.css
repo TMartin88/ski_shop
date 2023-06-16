@@ -184,7 +184,9 @@ input[name='q']::placeholder {
 }
 
 @media only screen and (max-width: 767px) {
-    .mc-layout__bannerContent iframe { height: auto !important }
+    .content__formFields {
+        margin-top: 200px;
+    }
   }
 
 /* Allauth form formatting */
