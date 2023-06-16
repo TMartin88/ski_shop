@@ -175,25 +175,9 @@
 
     {% block postloadjs %}
     <script>
-        window.addEventListener("load", function () {
-            var popupIframe = document.querySelector("iframe[name='__privateStripeMetricsController2510']");
-            if (popupIframe) {
-                popupIframe.style.position = "fixed";
-                popupIframe.style.bottom = "0";
-                // Adjust other CSS properties as needed
-            }
-        });
-    </script>
-    <script>
         $('.toast').toast('show');
     </script>
-    <script id="mcjs">
-        ! function (c, h, i, m, p) {
-            m = c.createElement(h), p = c.getElementsByTagName(h)[0], m.async = 1, m.src = i, p.parentNode.insertBefore(
-                m, p)
-        }(document, "script",
-            "https://chimpstatic.com/mcjs-connected/js/users/638e8e82f9b02f930f08d6d9c/08fc5ae98dc34e5df41bae313.js");
-    </script>
+
     {% endblock %}
 
 </body>
