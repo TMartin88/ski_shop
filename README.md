@@ -13,10 +13,11 @@ The shop is populated with great value offers of leading brands of skis, snowboa
 
 The shop has most of the functionality you would expect from an online store.
 
-Products by Category
-Search
-Basket
-Checkout
+Products by:
+- Category
+- Search
+- Basket
+- Checkout
 
 ------------------------------------
 
@@ -81,7 +82,17 @@ Bootstrap allows for seamless responsiveness.
 
 The site header and brand is preserved at the top of the page.
 
-------------------------
+Good quality images are used for products to attract user attention.
+
+
+## Responsive
+---
+ 
+This GUI application is responsive using Bootstrap and looks good on different device screen sizes.
+
+![](https://res.cloudinary.com/dxbarumnj/image/upload/v1677616512/responsive_swgo3h.jpg)
+
+--------------------------------
 
 ## Site Navigation
 ---
@@ -103,7 +114,7 @@ Site navigation is primarily by way of:
     - My Account
     - Basket
 
-There are Logged Status changes to the navigation experience for My Account:
+There are Logged In Status changes to the navigation experience for My Account:
 
 Not Logged In          |  Logged In   | SuperUser     
 :-----------------:|:-----------------:|:-----------------:
@@ -111,7 +122,7 @@ Not Logged In          |  Logged In   | SuperUser
 
 ------------------------------
 
-# Manual Testing
+# Manual Testing and Walkthrough
 ---
 
 ## My Account
@@ -226,6 +237,44 @@ This is all working as expected.
 
 -----------------------------
 
+#### Has Sizes
+
+![](/static/readme_images/hassizes.webp)
+
+The Product has sizes boolean indicates whether Sizes are available for selection for this product or not.
+
+Has Size Select    |  No Size Select
+:-----------------:|:-----------------:
+ ![](/static/readme_images/sizeselect.webp)  |  ![](/static/readme_images/noselect.webp)
+
+At the moment the only sizes available are hard coded as follows:
+
+```
+{% with product.has_sizes as s %}
+                            {% if s %}
+                                <div class="col-12">
+                                    <p><strong>Size:</strong></p>
+                                    <select class="form-control rounded-0 w-50" name="product_size" id='id_product_size'>
+                                        <option value="xs">XS</option>
+                                        <option value="s">S</option>
+                                        <option value="m" selected>M</option>
+                                        <option value="l">L</option>
+                                        <option value="xl">XL</option>
+                                    </select>
+                                </div>
+                            {% endif %}
+```
+
+When the Product Size functionality is implemented in the shopping experience then the sizes available will be dynamic.
+
+As in each product will have its own size options.
+
+Like for instance a pair of Skis will have size options like this:
+
+![](/static/readme_images/skissizes.webp)
+
+-----------------------------
+
 ## Django Admin
 
 **Please note all Product, Sizes and Product Size Management functionality is in th admin section.**
@@ -253,351 +302,83 @@ Django Admin       |  Product Size Admin
 ----------------------------------
 
 
-### Single Page
+## Product Categories Main nav
 ---
 
-This is a Single Route(Post_detail) page
+All Products          |  Skis   | Snowboards  |  Accessories  | Others
+:-----------------:|:-----------------:|:-----------------:|:-----------------:|:-----------------:
+![](/static/readme_images/allproducts.webp)  |  ![](/static/readme_images/skis.webp)  | ![](/static/readme_images/snowboards.webp) | ![](/static/readme_images/accessories.webp) | ![](/static/readme_images/Others.webp)
 
 ------------------------
 
-### Timetable
+## Shopping (Using Skis as an Example. Remember we are still using Boutique Ado Products and Images)
 ---
 
-The timetable is usually presented in a 2 table presentation.
+Shopping for Skis
 
-- Inbound
-- Outbound
+ ![](/static/readme_images/skiproducts.webp)
 
-The Site Visitor can toggle between the 2 with the Change Direction button.
 
-![](https://res.cloudinary.com/dxbarumnj/image/upload/v1677615623/single_txqwjj.jpg)
-
-------------------------------
-
-### Links to Cheaper Fares and The Mobile App
----
-
-This allows the Site Visitor to avail of cheaper fares and use advanced Journey Planning in the App.
-
-![](https://res.cloudinary.com/dxbarumnj/image/upload/v1677587181/other_olkv9k.jpg)
-
-----------------------------
-
-### PDF and Back Button
----
-There is a PDF button on this page to enable the Site Visitor to view or download a PDF version of the timetable.
-
-These is also a Back Button on this page to take a Site Visitor to a previous Page.
-
-Page 1           |  Page 2
+Skis with Sizes       |  Skis without Sizes
 :-----------------:|:-----------------:
-![](https://res.cloudinary.com/dxbarumnj/image/upload/v1677615937/Page1_fphufa.jpg)  |  ![](https://res.cloudinary.com/dxbarumnj/image/upload/v1677615939/page2_cwlxnw.jpg)
+ ![](/static/readme_images/sizedropdown.webp)  |  ![](/static/readme_images/nodropdown.webp)
 
--------------------
 
-### Comments and Likes
+Add to Basket       |  Multiple Items in Basket
+:-----------------:|:-----------------:
+ ![](/static/readme_images/skisizebasket.webp)  |  ![](/static/readme_images/basket.webp)
+
+
+Basket Contents      |  Basket Total
+:-----------------:|:-----------------:
+ ![](/static/readme_images/securecheck.webp)  |  ![](/static/readme_images/check.webp)
+
+Checkout      |  Complete Order
+:-----------------:|:-----------------:
+ ![](/static/readme_images/checkouttop.webp)  |  ![](/static/readme_images/payment.webp)
+
+
+Purchase Complete
+
+![](/static/readme_images/success.webp)
+
+ This is all working as expected.
+
+------------------------
+
+## Newsletter with Mailchimp
 ---
 
-The Site Visitor can view Comments and Likes Count for this Route/Post
+![](/static/readme_images/mailchimp.webp)
 
-![](https://res.cloudinary.com/dxbarumnj/image/upload/v1677587188/comment_vmojhm.jpg)
+ This is all working as expected.
 
-If the User is Logged in then they can Add Comments and Likes
+------------------------
 
-![](https://res.cloudinary.com/dxbarumnj/image/upload/v1677588046/addcomment_ggwec3.jpg)
-
------------------------
-
-## Urban Centres
+## Facebook
 ---
 
-This is a CRUD for the Urban Centres.
+![](/static/readme_images/facebook.webp)
 
-**The Urban Centres with "Show On Map" set to true appear on the Google Interactive Map**
+ This is all working as expected.
 
-![](https://res.cloudinary.com/dxbarumnj/image/upload/v1677616115/urban_xgp21l.jpg)
+ **In Chrome Developer Tools, the Console had no errors**
 
-------------------
-
-## Admin
----
-
-This is the Main Admin Panel.
-
-**The Header and the Footer are not visible on this page as it is a Back End utility**
-
-![](https://res.cloudinary.com/dxbarumnj/image/upload/v1677616240/admin_wrvwej.jpg)
-
-----------------
-
-## Footer
----
-
-This is the footer which always visible. This has links to:
-
-- Social media
-- Office contact links
-
-Partners are not links so as not to take site visitors away to other sites.
-
-![](https://res.cloudinary.com/dxbarumnj/image/upload/v1677587184/footer_axwceh.jpg)
-
------------------------------------------------
-
-**Because the Header is sticky the Nav bar is always visible**
-
-----------------------------------------------------
-
-# Responsive
----
- 
-This GUI application is responsive using Bootstrap and looks good on different device screen sizes.
-
-![](https://res.cloudinary.com/dxbarumnj/image/upload/v1677616512/responsive_swgo3h.jpg)
-
---------------------------------
-
-# Project Walkthrough and Manual Testing
----
-
-## Routes (Posts)
----
-
-### Admin
----
-
-![](https://res.cloudinary.com/dxbarumnj/image/upload/v1677595886/admin_xy6zky.jpg)
-
-- Add a new Post
-
-![](https://res.cloudinary.com/dxbarumnj/image/upload/v1677619680/postpage1_btind3.jpg)
-
-![](https://res.cloudinary.com/dxbarumnj/image/upload/v1677621027/postpage2_qkzkyl.jpg)
-
-**For testing purposes all HTML code for the Timetable in Post Content and other data can be taken from 
-
-[Local Link Cork](https://locallinkcork.com/schedule/10000-quality-hotel-to-youghal/)
-
-------------------------------------
-
-### All Users
----
-
-This post being published is now available to all Users:
-
-- Visible on Home Page
-
-![](https://res.cloudinary.com/dxbarumnj/image/upload/v1677685822/tablepost_gjszgk.jpg)
-
-- Searchable on Map (Click Youghal)
-
-![](https://res.cloudinary.com/dxbarumnj/image/upload/v1677686014/youghal_hjhppr.jpg)
-
-- Searchable on Nav Bar search (type in quality)
-
-![](https://res.cloudinary.com/dxbarumnj/image/upload/v1677686014/youghal_hjhppr.jpg)
-
-- Route (Post Detail) Timetable is updated
-
-![](https://res.cloudinary.com/dxbarumnj/image/upload/v1677686328/postdetail_vckdas.jpg)
-
-- Route (Post Detail) PDF Version button links to PDF
-
-![](https://res.cloudinary.com/dxbarumnj/image/upload/v1677686529/pdfyoughal_djimjg.jpg)
-
------------------------------------------
-
-### Logged in Users
----
-
-This post being published is now available to logged in Users for Comments and Likes
-
-- Route (Post Detail) is ready for Comments and Likes
-
-![](https://res.cloudinary.com/dxbarumnj/image/upload/v1677686919/commentsadd_ux1nfj.jpg)
-
------------------------------------------
-
-### Admin
----
-
-Comments submitted by Logged In Users need to be Approved by Admin
-
-- Select comment to change
-- Action Approve Comments
-
-![](https://res.cloudinary.com/dxbarumnj/image/upload/v1677698140/commentapp_txlvnm.jpg)
-
-------------------------------------------------------
-
-## Urban Centres
----
-
-### Signals and Model
----
-
-Initially the map icons were populated from a JSON file. 
-
-This was by way of signals.py whuch amended the json file to match urban model.
-
-I did this because I was initially struggling with populating icons straight from the urban Model.
-
-Unfortunately when deployed to Heroku this created an error as the json file was unavailable or impossible to read.
-
-Because this may be some Heroku particular peculiarity I opted to retain signals.py.
-
-I had to go back and research creating an option for the map icons to be read straight from the urban model.
-
-Having successfully managed that now the Map icons are populated directly from Urban Model.
-
-I have left the signals code available in case I need JSON file for distribution in further developments.
-
-In javascript file I have hard coded this option:
-
-```
-// Set this flag to true if you want to fetch the data from the Django model
-  const fromModel = true;
-```
-
-### Logged in Users
----
-
-This is a CRUD for the Urban Centres.
-
-**The Urban Centres With "Show On Map" set to true appear on the Google Interactive Map**
-
-![](https://res.cloudinary.com/dxbarumnj/image/upload/v1677616115/urban_xgp21l.jpg)
-
-**The Map currently has a Bus Icon over Youghal**
-
-![](https://res.cloudinary.com/dxbarumnj/image/upload/v1677687361/bus_ihyaad.jpg)
-
-#### Delete
----
-
-Select Youghal in Urban Centre and Click Delete.
-
-![](https://res.cloudinary.com/dxbarumnj/image/upload/v1677687987/youghallist_t3finw.jpg)
-
-- It has dissappeared from the Urban Centre List
-
-- The Bus Icon has now dissappeared on the Map also
-
-![](https://res.cloudinary.com/dxbarumnj/image/upload/v1677687678/youghalbus_sfpzw2.jpg)
-
-#### Add
----
-
-![](https://res.cloudinary.com/dxbarumnj/image/upload/v1677687815/youghaladd_xi0030.jpg)
-
-- It now appears in the Urban Centre List
-
-![](https://res.cloudinary.com/dxbarumnj/image/upload/v1677687987/youghallist_t3finw.jpg)
-
-- It now appears as a Bus Icon on the Map
-
-![](https://res.cloudinary.com/dxbarumnj/image/upload/v1677687361/bus_ihyaad.jpg)
-
-#### Toggle
----
-
-Select Youghal in Urban List and Click Toggle
-
-![](https://res.cloudinary.com/dxbarumnj/image/upload/v1677687987/youghallist_t3finw.jpg)
-
-- The Urban Centre and slug and Latitude and Longitude have a strikethrough
-- The Show On Map is now False
-
-![](https://res.cloudinary.com/dxbarumnj/image/upload/v1677688281/toggle_fcvmmx.jpg)
-
-- The Bus Icon has now dissappeared on the Map also
-
-![](https://res.cloudinary.com/dxbarumnj/image/upload/v1677687678/youghalbus_sfpzw2.jpg)
-
-Select Youghal in Urban List and Click Toggle again
-
-![](https://res.cloudinary.com/dxbarumnj/image/upload/v1677688281/toggle_fcvmmx.jpg)
-
-- Strikethrough is now gone
-- The Show On Map is now True
-
-![](https://res.cloudinary.com/dxbarumnj/image/upload/v1677687987/youghallist_t3finw.jpg)
-
-- The Bus Icon has now appeared on the Map also
-
-![](https://res.cloudinary.com/dxbarumnj/image/upload/v1677687361/bus_ihyaad.jpg)
-
-#### Edit
----
-
-Select Youghal in Urban List and Click Edit
-
-![](https://res.cloudinary.com/dxbarumnj/image/upload/v1677687987/youghallist_t3finw.jpg)
-
-The Edit Page appears
-
-![](https://res.cloudinary.com/dxbarumnj/image/upload/v1677688911/edit_p5atnq.jpg)
-
-Here you can change:
-
-- Title (the slug will automatically be reset also)
-- Latitude
-- Longitude
-- Showmap tick
-
-Changing the co-ordinates will move the Bus Icon.
-
-**Any Urban Centres created or edited with co-ordinates outside of LLC area of operation will appear on the map but will not be viewable by a user as the Google Map has bounds restricting the viewing area of the map to the LLC area of operation**
-
-## Register
----
-
-![](https://res.cloudinary.com/dxbarumnj/image/upload/v1677697897/register_julgvd.jpg)
-
-Just select Register in Nav and then click Sign Up
-
-## Login
----
-
-![](https://res.cloudinary.com/dxbarumnj/image/upload/v1677697709/login_a024ya.jpg)
-
-Just select Login in Nav and then click Sign In
-
-## Logout
----
-
-![](https://res.cloudinary.com/dxbarumnj/image/upload/v1677689824/signout_kpevtl.jpg)
-
-Just select Logout in Nav and then click Sign Out
-
-------------------------------------
-
-**In Chrome Developer Tools, the Console had no errors**
-
-------------------------------------
+------------------------
 
 # Testing
 ---
 
-## Urban CRUD Testing
+## CRUD Testing
 ---
 
-Try to spoof the Urban CRUD while not logged in on other Browser
+Try to spoof the Management CRUD while not logged in on other Browser
 
-### List
----
+![](/static/readme_images/signinchallenge.webp)
 
-![](https://res.cloudinary.com/dxbarumnj/image/upload/v1678107369/spooflist_wejupz.jpg)
+This signin challenge appears for all spoof attempts.
 
-### Add
----
-
-![](https://res.cloudinary.com/dxbarumnj/image/upload/v1678107268/spoofadd_evus0n.jpg)
-
-### Edit
----
-
-![](https://res.cloudinary.com/dxbarumnj/image/upload/v1678107067/spoofedit_iymef5.jpg)
+------------------------
 
 ## Validator Testing
 ---
