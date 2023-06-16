@@ -26,10 +26,9 @@ if os.path.isfile('env.py'):
 SECRET_KEY = os.environ.get('SECRET_KEY', '')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = 'DEVELOPMENT' in os.environ
-# DEBUG = True
+DEBUG = True
 
-ALLOWED_HOSTS = ['skishop.herokuapp.com', 'localhost', '8000-tmartin88-skishop-aupjgx9t1il.ws-eu99.gitpod.io']
+ALLOWED_HOSTS = ['skishop.herokuapp.com', 'localhost', '8000-tmartin88-skishop-aupjgx9t1il.ws-eu100.gitpod.io']
 
 # Application definition
 

@@ -467,6 +467,90 @@ JSHint.com
 
 ----
 
+# E-Commerce Business Model
+-------
+
+We have recognised that an online presence with a top end Online Shop is essential for Shoppers to enjoy shopping on our store.
+
+This online store offers easy navigation, robust search functionality, secure payment processing, and detailed product descriptions.
+
+Continuous improvement will ensure that this online shop will maximise the traffic coming to our store.
+
+We offer a wide range of ski equipment, including skis, boots, poles, helmets, goggles, and clothing.
+
+
+## Customer Service
+
+We provide excellent customer support, including assistance with product selection, sizing, and addressing any concerns or inquiries.
+
+
+## Target Market
+
+Our target market includes skiers of all ages and skill levels, catering to both beginners and experienced enthusiasts.
+
+Initially targetting Ireland only.
+
+
+## Revenue
+
+Our revenue comes exclusively from our online store as we do not have a high street presence.
+
+
+## Fulfillment and Shipping
+
+Once a shopper clicks Complete Purchase then the logistics kick in. How do we get the products to the shopper?
+
+While our market is in Ireland we will do this through the postal service and some courier services.
+
+A Shipping calculator will be provided.
+
+
+### Dropshipping
+
+This is an important consideration once we progress to the international market. In this instance we will not have any stock at all and all shipping will be handled by our wholesalers.
+
+This will require an integration with wholesalers so that the correct shipping cost as calcualted by the wholesaler is provided to the shopper in our online checkout business process.
+
+
+## Marketing Strategy
+
+###  Define Unique Selling Proposition (USP)
+We have identified our unique selling proposition, which includes a combination of competitive prices, exceptional customer service, and a wide selection of exclusive products.
+
+### SEO and Content Marketing
+We will continually optimize our website for search engines by targeting relevant skiing-related keywords. We will also create informative and engaging content, such as blog posts, guides, and tutorials, to attract and educate potential customers.
+
+### Social Media Marketing
+We will leverage platforms like Instagram, Facebook, and Twitter to showcase our products, share skiing tips, post customer testimonials, and run targeted advertising campaigns.
+We will use Social Media tools like Hootsuite to manage all of our Social media platforms
+
+### Email Marketing
+
+We will build an email list by offering exclusive discounts, updates on new products, and informative content to subscribers. We will send regular newsletters to engage with our audience and encourage repeat purchases.
+
+### Retargeting and Remarketing
+
+We will implement strategies to reach potential customers who have shown interest in our products by displaying targeted ads on other websites they visit or through social media platforms.
+
+### Affiliate Marketing
+
+We will collaborate with skiing-related websites, blogs, and influencers to drive traffic to our store. We will offer them a commission for each sale generated through their referral.
+We will regularly contribute articles for Winter Sport websites and Magazines.
+We will be a presence at Tradeshows and Ski and Snowboarding events.
+
+### Customer Loyalty Program
+
+We will implement a loyalty program to incentivize repeat purchases. We will offer discounts, rewards, and exclusive perks to encourage customer retention.
+
+### Customer Reviews and Testimonials
+
+We will encourage customers to leave reviews and testimonials on our website. Also a rating system for our products.
+
+**Note this has not yet been developed.
+
+--------
+
+
 ## Development Transition
 ---
 
@@ -560,11 +644,21 @@ In Heroku
 - Create App.
 - Postgres.
 - In Settings Reveal Config Vars
-    - Key: CLOUDINARY_URL Value: "cloudinary url"
-    - Key: DATABASE_URL Value: "postgres url"
-    - Key: Port Value: 8000
-    - Key: SECRET_KEY Value: *******
-    - Key: DISABLE_COLLECTSTATIC Value: 1
+    - Key: AWS_ACCESS_KEY_ID Value: ********
+    - Key: AWS_SECRET_ACCESS_KEY Value: ********
+    - Key: DATABASE_URL Value: ********
+    - Key: EMAIL_HOST Value: smtp.gmail.com
+    - Key: EMAIL_HOST_PASS Value: ********
+    - Key: EMAIL_HOST_USER: ********
+    - Key: EMAIL_PORT Value: 587
+    - Key: EMAIL_USE_TLS Value: True
+    - Key: HEROKU_POSTGRESQL_PUCE_URL Value: ********
+    - Key: SECRET_KEY Value: ********
+    - Key: STRIPE_PUBLIC_KEY Value:********
+    - Key: STRIPE_SECRET_KEY Value: ********
+    - Key: STRIPE_WH_SECRET Value: ********
+    - Key: USE_AWS Value: True
+
 - Manual Deploy (Select Github as deployment method)
 - Search for Django Repo
 - Deploy Branch
@@ -603,17 +697,13 @@ In Gitpod
 ## Credits
 ---
 
-- [Slug Tutorial](https://learndjango.com/tutorials/django-slug-tutorial)
-- [Full Text Search](https://testdriven.io/blog/django-search/)
-- Post Engine assistance from "I Think Therefore I Blog"
+- Boutique Ado
+- Pexels for images
 - CRUD assistance from "Hello Django"
 - [General Problem Solving](https://www.w3schools.com/django/)
 - [Advanced Filters](https://www.w3schools.com/bootstrap4/bootstrap_filters.asp)
-- [My Earlier development in Wordpress](https://locallinkcork.com/)
-- [My Earlier experimental work with Google Maps API](https://github.com/TMartin88/dynamicmaps)
-- [Default Form to Current Logged in User](https://stackoverflow.com/questions/70559902/django)
 - [Signals for Json](https://www.geeksforgeeks.org/how-to-create-and-use-signals-in-django/)
 - [Signals for Json](https://github.com/Code-Institute-Solutions/boutique_ado_v1/blob/master/checkout/signals.py)
-- [Skip to Site Content](https://www.a11yproject.com/)
+- Some code I reused from my Project 4 
 
 ---------------------------------
