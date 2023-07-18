@@ -560,7 +560,7 @@ We will encourage customers to leave reviews and testimonials on our website. Al
 ### Initial Workflow and Design Concept
 ---
 
-This online shop is largely based on the BOutique Ado project.
+This online shop is largely based on the Boutique Ado project.
 
 The additional development is based around expanding size options andfunctionality.
 
@@ -576,7 +576,7 @@ Unfortunately implementing these in the shopping experience is not completed as 
 
 This Project is not the final step but the building blocks are in place.
 
-The ultimate goal will be to improve this online shop so it can cater ofr international customers.
+The ultimate goal will be to improve this online shop so it can cater for international customers.
 
 In addition helpful tools like Size Calculators for the various product categories will be developed.
 
