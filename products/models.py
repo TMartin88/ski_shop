@@ -1,4 +1,5 @@
 from django.db import models
+from decimal import Decimal  # Import the Decimal class
 
 
 class Category(models.Model):
@@ -28,6 +29,7 @@ class Product(models.Model):
     description = models.TextField()
     has_sizes = models.BooleanField(default=False, null=True, blank=True)
     price = models.DecimalField(max_digits=6, decimal_places=2)
+    package_weight = models.DecimalField(max_digits=6, decimal_places=2, default=Decimal('5.00'))
     rating = models.DecimalField(
         max_digits=6,
         decimal_places=2,
