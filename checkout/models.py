@@ -10,6 +10,28 @@ from products.models import Product
 from profiles.models import UserProfile
 
 
+from decimal import Decimal
+from shipping.models import ShippingCost
+
+
+def calculate_shipping_cost(package_weight, country_code):
+    try:
+        shipping_cost = ShippingCost.objects.filter(
+            country=country_code,
+            weight_from__lte=package_weight,
+            weight_to__gt=package_weight
+        ).first()
+
+        if shipping_cost:
+            return shipping_cost.get_cost(), False  # Return shipping cost and a flag indicating no flat fee applied
+        else:
+            # Return the flat fee of $150 along with the flag indicating that flat fee is applied
+            return Decimal('150'), True
+    except ShippingCost.DoesNotExist:
+        # Return the flat fee of $150 along with the flag indicating that flat fee is applied
+        return Decimal('150'), True
+
+
 class Order(models.Model):
     order_number = models.CharField(max_length=32, null=False, editable=False)
     user_profile = models.ForeignKey(
