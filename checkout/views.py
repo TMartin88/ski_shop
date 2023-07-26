@@ -55,6 +55,9 @@ def checkout(request):
             'county': request.POST['county'],
         }
 
+        # Extract the 'country' value from form_data
+        selected_country = form_data['country']
+
         order_form = OrderForm(form_data)
         if order_form.is_valid():
             order = order_form.save(commit=False)

@@ -11,7 +11,7 @@ from profiles.models import UserProfile
 
 
 from decimal import Decimal
-from shipping.models import ShippingCost
+from shipping.models import ShippingCost, ShippingMethod
 
 
 def calculate_shipping_cost(package_weight, country_code):
@@ -52,6 +52,7 @@ class Order(models.Model):
     county = models.CharField(max_length=80, null=True, blank=True)
     date = models.DateTimeField(auto_now_add=True)
     flat_fee_applied = models.BooleanField(default=False)
+    shipping_method = models.CharField(max_length=255, default='Standard Shipping')
     delivery_cost = models.DecimalField(
         max_digits=6,
         decimal_places=2,

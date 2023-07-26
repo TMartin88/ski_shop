@@ -1,5 +1,6 @@
 from django import forms
 from .models import Order
+from shipping.models import ShippingCost
 
 
 class OrderForm(forms.ModelForm):
