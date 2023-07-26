@@ -155,7 +155,7 @@
         {% include 'includes/toasts/toast_warning.html' %}
         {% elif level == 25 %}
         {% include 'includes/toasts/toast_success.html' %}
-        {% elif message.level == FLAT_DELIVERY_MESSAGE_LEVEL %}
+        {% elif level == 20 %}
         {% include 'includes/toasts/toast_delivery.html' %}
         {% else %}
         {% include 'includes/toasts/toast_info.html' %}

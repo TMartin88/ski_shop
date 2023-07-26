@@ -13,6 +13,8 @@ from profiles.models import UserProfile
 from profiles.forms import UserProfileForm
 from basket.contexts import basket_contents
 
+from decimal import Decimal
+
 import stripe
 import json
 
@@ -56,6 +58,13 @@ def checkout(request):
         order_form = OrderForm(form_data)
         if order_form.is_valid():
             order = order_form.save(commit=False)
+
+            # Calculate the delivery fee and apply it to the order
+            current_basket = basket_contents(request)
+            delivery_fee = current_basket['delivery']  # Assuming the key in the context is 'delivery'
+            order.delivery_cost = Decimal(delivery_fee)
+            order.flat_fee_applied = current_basket['flat_fee_applied']
+
             pid = request.POST.get('client_secret').split('_secret')[0]
             order.stripe_pid = pid
             order.original_basket = json.dumps(basket)
