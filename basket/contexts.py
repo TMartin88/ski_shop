@@ -9,6 +9,7 @@ def basket_contents(request):
     basket_items = []
     total = 0
     product_count = 0
+    package_weight = 0  # Initialize the package weight
     basket = request.session.get('basket', {})
 
     for item_id, item_data in basket.items():
@@ -16,6 +17,7 @@ def basket_contents(request):
             product = get_object_or_404(Product, pk=item_id)
             total += item_data * product.price
             product_count += item_data
+            package_weight += item_data * product.package_weight  # Update package weight
             basket_items.append({
                 'item_id': item_id,
                 'quantity': item_data,
@@ -26,6 +28,7 @@ def basket_contents(request):
             for size, quantity in item_data['items_by_size'].items():
                 total += quantity * product.price
                 product_count += quantity
+                package_weight += quantity * product.package_weight  # Update package weight
                 basket_items.append({
                     'item_id': item_id,
                     'quantity': quantity,
@@ -47,6 +50,7 @@ def basket_contents(request):
         'total': total,
         'product_count': product_count,
         'delivery': delivery,
+        'package_weight': package_weight,
         'free_delivery_delta': free_delivery_delta,
         'free_delivery_threshold': settings.FREE_DELIVERY_THRESHOLD,
         'grand_total': grand_total,

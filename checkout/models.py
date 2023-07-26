@@ -78,6 +78,10 @@ class Order(models.Model):
         default=''
         )
 
+    def get_shipping_cost(self):
+        package_weight = 5  # Replace this with the actual package weight.
+        return calculate_shipping_cost(package_weight, self.country.code)
+
     def _generate_order_number(self):
         """
         Generate a random, unique order number using UUID
