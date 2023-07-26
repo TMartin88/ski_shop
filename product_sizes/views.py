@@ -125,7 +125,7 @@ def edit_product_size(request, product_size_id):
             form = ProductSizeEditForm(request.POST, instance=product_size)
         else:
             form = ProductSizeAddForm(request.POST)
-        
+
         if form.is_valid():
             form.save()
             messages.success(request, 'Successfully updated product size!')
