@@ -48,6 +48,7 @@ class ProductAdmin(admin.ModelAdmin):
         'price',
         'rating',
         'image',
+        'package_weight',
     )
 
     ordering = ('sku',)
