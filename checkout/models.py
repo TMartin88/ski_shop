@@ -136,7 +136,7 @@ class OrderLineItem(models.Model):
         max_length=254,
         null=True,
         blank=True
-        )  # XS, S, M, L, XL
+        )  # XS, S, M, L, XL or Product Size
     quantity = models.IntegerField(null=False, blank=False, default=0)
     lineitem_total = models.DecimalField(
         max_digits=6,

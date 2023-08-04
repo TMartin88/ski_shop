@@ -1,4 +1,4 @@
-# Ski Shop <img align="right" width="75" height="75" src="static/readme_images/favicon.png">
+ # Ski Shop <img align="right" width="75" height="75" src="static/readme_images/favicon.png">
 
 # Site Goals
 ---
@@ -8,8 +8,6 @@ Ski Shop is an online ecommerce shop developed in Django.
 This shop is initially targetting the Irish market.
 
 The shop is populated with great value offers of leading brands of skis, snowboards and accessories.
-
-- **For the purpose of the project submission I have retained the products and images form Boutique Ado, but when in production the products will be ski and snowboard products and images.**
 
 The shop has most of the functionality you would expect from an online store.
 
@@ -84,6 +82,58 @@ The site header and brand is preserved at the top of the page.
 
 Good quality images are used for products to attract user attention.
 
+The Main Background image is very striking and exciting.
+
+
+## Wireframe
+---
+
+Using Balsamiq as a design tool, the home page wireframe is designed to grab the attention of a shopper.
+
+It is a simple design without any clutter, with a Shop now button and Subscribe popup. 
+
+Site Navigation is split into 2 areas.
+
+Product Nav and My Account Nav.
+
+The header is visible at all times so the shopper can always see the Basket.
+
+In addition there is a popup to encourage the shopper to Subscribe.
+
+
+![](/static/readme_images/websitesample.png)
+
+ 
+## Database Schema
+---
+
+AllAuth
+
+![](/static/readme_images/allauth.webp)
+
+Product/Product Size
+
+![](/static/readme_images/productsizemodel.webp)
+
+Order/Profile
+
+![](/static/readme_images/ordermodel.webp)
+
+Shipping
+
+![](/static/readme_images/shippingmodel.webp)
+
+The database is designed to allow the shop owner to set speficic sizes that are relveant to certain products.
+
+Also the shipping is calculated based on Package Weight.
+
+It is assumed that all of the products of the basket will be shipped at the same time.
+
+In this version only Standard Shipping is applied.
+
+In future versions the shopper at checkout will have the opportunity to select other shipping methods such as Express Shipping.
+
+All Users have indiviudual profiles and the country can be used in shipping calculations.
 
 ## Responsive
 ---
@@ -91,6 +141,28 @@ Good quality images are used for products to attract user attention.
 This GUI application is responsive using Bootstrap and looks good on different device screen sizes.
 
 ![](/static/readme_images/responsive.webp)
+
+
+## Shopping Concept
+---
+
+Shoppers can buy Ski related products in a simple secure way. They can get calculated shipping costs and can purchase products with relevant sizes.
+
+For example Skis.
+
+They are available in sizes that are appropriate to Skis.
+
+Small 100-109 cm, Medium 150-159 cm and Large 180-190 cm.
+
+These sizes are available in Beginner Intermediate and Expert.
+
+![](/static/readme_images/productsizelist.webp)
+
+**There is more detailed information on this in Product Size section**
+
+When the shoppers purchase items the checkout process is secure using Stripe for payments and retaining orders stored against the shoppers profile.
+
+**There is more detailed information on this in Checkout section**
 
 --------------------------------
 
@@ -201,9 +273,9 @@ Edit Size       |  Size Edited
 
  This is all working as expected. Rollers Included now in description.
 
-Delete Size      |  Size Deleted
+Delete Size (Wooly Hat)     |  Size Deleted
 :-----------------:|:-----------------:
- ![](/static/readme_images/sizeedited.webp)  |  ![](/static/readme_images/sizedeleted.webp)
+ ![](/static/readme_images/woolyhat.webp)  |  ![](/static/readme_images/sizedeleted.webp)
 
 
 This is all working as expected. Wooly Hats is now gone.
@@ -226,7 +298,7 @@ Edit Product Size       |  Product Size Edited
 
  This is all working as expected.
 
- **Please note there is a bug here the available sizes to edit should be filtered by the category**
+ **Please note there is a bug here the available sizes to edit should be filtered by the category and ski bag should not be an option**
 
 Delete Product Size      |  Product Size Deleted
 :-----------------:|:-----------------:
@@ -247,31 +319,17 @@ Has Size Select    |  No Size Select
 :-----------------:|:-----------------:
  ![](/static/readme_images/sizeselect.webp)  |  ![](/static/readme_images/noselect.webp)
 
-At the moment the only sizes available are hard coded as follows:
+The default sizes available are: XS, S, M, L, XL
 
-```
-{% with product.has_sizes as s %}
-                            {% if s %}
-                                <div class="col-12">
-                                    <p><strong>Size:</strong></p>
-                                    <select class="form-control rounded-0 w-50" name="product_size" id='id_product_size'>
-                                        <option value="xs">XS</option>
-                                        <option value="s">S</option>
-                                        <option value="m" selected>M</option>
-                                        <option value="l">L</option>
-                                        <option value="xl">XL</option>
-                                    </select>
-                                </div>
-                            {% endif %}
-```
+With the Product Size functionality implemented in the shopping experience the sizes available are dynamic.
 
-When the Product Size functionality is implemented in the shopping experience then the sizes available will be dynamic.
+As in each product can have its own size options.
 
-As in each product will have its own size options.
+Like for instance Skis have size options like this:
 
-Like for instance a pair of Skis will have size options like this:
+![](/static/readme_images/productsizelist.webp)
 
-![](/static/readme_images/skissizes.webp)
+In this way products can be assigned sizes that are relevant to that type of product.
 
 -----------------------------
 
@@ -311,18 +369,27 @@ All Products          |  Skis   | Snowboards  |  Accessories  | Others
 
 ------------------------
 
-## Shopping (Using Skis as an Example. Remember we are still using Boutique Ado Products and Images)
+## Shopping (Showing No Size, default Size and Relevant sizes examples)
 ---
 
 Shopping for Skis
 
  ![](/static/readme_images/skiproducts.webp)
 
+Shopping for Snowboards
 
-Skis with Sizes       |  Skis without Sizes
-:-----------------:|:-----------------:
- ![](/static/readme_images/sizedropdown.webp)  |  ![](/static/readme_images/nodropdown.webp)
+ ![](/static/readme_images/snowboards.webp)
 
+Shopping for Ski Mask
+
+ ![](/static/readme_images/goggles.webp)
+
+Skis with Sizes       |  Snowboards Default Sizes      |  Mask No Sizes
+:-----------------:|:-----------------:|:-----------------:
+ ![](/static/readme_images/sizedropdown.webp)  |  ![](/static/readme_images/snowboardsize.webp) |  ![](/static/readme_images/hasnosize.webp)
+
+## Shopping Basket
+---
 
 Add to Basket       |  Multiple Items in Basket
 :-----------------:|:-----------------:
@@ -333,12 +400,18 @@ Basket Contents      |  Basket Total
 :-----------------:|:-----------------:
  ![](/static/readme_images/securecheck.webp)  |  ![](/static/readme_images/check.webp)
 
+
+## Shipping/Delivery Costs
+---
+
+
+
+## Shopping Checkout
+---
 Checkout      |  Complete Order
 :-----------------:|:-----------------:
  ![](/static/readme_images/checkouttop.webp)  |  ![](/static/readme_images/payment.webp)
 
-
-Purchase Complete
 
 ![](/static/readme_images/success.webp)
 
@@ -470,7 +543,9 @@ JSHint.com
 
 ----
 
-# E-Commerce Business Model
+# Marketing Strategy
+
+## E-Commerce Business Model
 -------
 
 We have recognised that an online presence with a top end Online Shop is essential for Shoppers to enjoy shopping on our store.
@@ -515,37 +590,35 @@ This is an important consideration once we progress to the international market.
 This will require an integration with wholesalers so that the correct shipping cost as calcualted by the wholesaler is provided to the shopper in our online checkout business process.
 
 
-## Marketing Strategy
-
-###  Define Unique Selling Proposition (USP)
+##  Define Unique Selling Proposition (USP)
 We have identified our unique selling proposition, which includes a combination of competitive prices, exceptional customer service, and a wide selection of exclusive products.
 
-### SEO and Content Marketing
+## SEO and Content Marketing
 We will continually optimize our website for search engines by targeting relevant skiing-related keywords. We will also create informative and engaging content, such as blog posts, guides, and tutorials, to attract and educate potential customers.
 
-### Social Media Marketing
+## Social Media Marketing
 We will leverage platforms like Instagram, Facebook, and Twitter to showcase our products, share skiing tips, post customer testimonials, and run targeted advertising campaigns.
 We will use Social Media tools like Hootsuite to manage all of our Social media platforms
 
-### Email Marketing
+## Email Marketing
 
 We will build an email list by offering exclusive discounts, updates on new products, and informative content to subscribers. We will send regular newsletters to engage with our audience and encourage repeat purchases.
 
-### Retargeting and Remarketing
+## Retargeting and Remarketing
 
 We will implement strategies to reach potential customers who have shown interest in our products by displaying targeted ads on other websites they visit or through social media platforms.
 
-### Affiliate Marketing
+## Affiliate Marketing
 
 We will collaborate with skiing-related websites, blogs, and influencers to drive traffic to our store. We will offer them a commission for each sale generated through their referral.
 We will regularly contribute articles for Winter Sport websites and Magazines.
 We will be a presence at Tradeshows and Ski and Snowboarding events.
 
-### Customer Loyalty Program
+## Customer Loyalty Program
 
 We will implement a loyalty program to incentivize repeat purchases. We will offer discounts, rewards, and exclusive perks to encourage customer retention.
 
-### Customer Reviews and Testimonials
+## Customer Reviews and Testimonials
 
 We will encourage customers to leave reviews and testimonials on our website. Also a rating system for our products.
 
@@ -560,14 +633,11 @@ We will encourage customers to leave reviews and testimonials on our website. Al
 ### Initial Workflow and Design Concept
 ---
 
-This online shop is largely based on the Boutique Ado project.
+This online shop has all the standard functionality and look and feel of an online shop.
 
-The additional development is based around expanding size options andfunctionality.
+The additional development is based around expanding size options and functionality.
 
 Also Shipping where shipping calculations other than a flat charge is possible.
-
-Unfortunately implementing these in the shopping experience is not completed as yet.
-
 
 -----------------------------------
 
@@ -576,11 +646,11 @@ Unfortunately implementing these in the shopping experience is not completed as 
 
 This Project is not the final step but the building blocks are in place.
 
-The ultimate goal will be to improve this online shop so it can cater for international customers.
+Helpful tools like Size Calculators for the various product categories will be developed.
 
-In addition helpful tools like Size Calculators for the various product categories will be developed.
+Colors as well as sizes will be implemented in future developments.
 
-Colors as well as sizes will be implemented in future developments
+Shipping will be expanded to allow for International Markets.
 
 ---------------------------------
  
@@ -700,7 +770,6 @@ In Gitpod
 ## Credits
 ---
 
-- Boutique Ado
 - Pexels for images
 - CRUD assistance from "Hello Django"
 - [General Problem Solving](https://www.w3schools.com/django/)
