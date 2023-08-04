@@ -25,11 +25,15 @@ def calculate_shipping_cost(package_weight, country_code):
         if shipping_cost:
             return shipping_cost.get_cost(), False  # Return shipping cost and a flag indicating no flat fee applied
         else:
-            # Return the flat fee of $150 along with the flag indicating that flat fee is applied
-            return Decimal('150'), True
+            flat_fee = Decimal(settings.FLAT_DELIVERY_CHARGE)
+            flat_fee_flag = True
+            # Return the flat fee along with the flag indicating that flat fee is applied
+            return flat_fee, flat_fee_flag
     except ShippingCost.DoesNotExist:
-        # Return the flat fee of $150 along with the flag indicating that flat fee is applied
-        return Decimal('150'), True
+        flat_fee = Decimal(settings.FLAT_DELIVERY_CHARGE)
+        flat_fee_flag = True
+        # Return the flat fee along with the flag indicating that flat fee is applied
+        return flat_fee, flat_fee_flag
 
 
 class Order(models.Model):

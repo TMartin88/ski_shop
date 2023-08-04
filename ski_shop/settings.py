@@ -26,7 +26,7 @@ if os.path.isfile('env.py'):
 SECRET_KEY = os.environ.get('SECRET_KEY', '')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['skishop.herokuapp.com', 'localhost', '8000-tmartin88-skishop-aupjgx9t1il.ws-eu102.gitpod.io']
 
@@ -204,6 +204,7 @@ if 'USE_AWS' in os.environ:
 
 # Stripe
 FREE_DELIVERY_THRESHOLD = 500
+FLAT_DELIVERY_CHARGE = 150
 STANDARD_DELIVERY_PERCENTAGE = 10
 STRIPE_CURRENCY = 'usd'
 STRIPE_PUBLIC_KEY = os.getenv('STRIPE_PUBLIC_KEY', '')

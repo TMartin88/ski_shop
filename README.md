@@ -404,6 +404,30 @@ Basket Contents      |  Basket Total
 ## Shipping/Delivery Costs
 ---
 
+### Shipping Methods
+
+![](/static/readme_images/shippingmethods.webp)
+
+### Shipping Costs
+
+![](/static/readme_images/shippingcosts.webp)
+
+### Shipping Cost Calculated
+
+There are 2 variables in settings
+
+```
+FREE_DELIVERY_THRESHOLD = 500
+FLAT_DELIVERY_CHARGE = 150
+```
+
+All orders above the threshold have free delivery.
+The Flat Delivery Charge is applied where the order is less than the threshold and either the shopper is not logged in or there is no standard delivery set for this shoppers country.
+
+Otherwise the rates are applied from the shipping cost model.
+
+
+
 
 
 ## Shopping Checkout
