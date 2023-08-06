@@ -90,9 +90,9 @@ def edit_shippingmethod(request, shippingmethod_id):
         messages.error(request, 'Sorry, only store owners can do that.')
         return redirect(reverse('home'))
 
-    size = get_object_or_404(Size, pk=size_id)
+    shippingmethod = get_object_or_404(ShippingMethod, pk=shippingmethod_id)
     if request.method == 'POST':
-        form = ShippingMethodForm(request.POST, instance=size)
+        form = ShippingMethodForm(request.POST, instance=shippingmethod)
         if form.is_valid():
             form.save()
             messages.success(request, 'Successfully updated Shipping Method!')
@@ -103,7 +103,7 @@ def edit_shippingmethod(request, shippingmethod_id):
                 'Failed to update size. Please ensure the form is valid.'
                 )
     else:
-        form = ShippingMethodForm(instance=size)
+        form = ShippingMethodForm(instance=shippingmethod)
         messages.info(request, f'You are editing {shippingmethod.name}')
 
     template = 'shipping/edit_shippingmethod.html'

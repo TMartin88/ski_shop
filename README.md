@@ -341,6 +341,41 @@ Like for instance Skis have size options like this:
 
 In this way products can be assigned sizes that are relevant to that type of product.
 
+## Shipping Management
+
+#### Shipping Methods
+
+Add Shipping Method        |  Shipping Method Added
+:-----------------:|:-----------------:
+ ![](/static/readme_images/addshippingmethod.webp)  |  ![](/static/readme_images/shippingmethodadded.webp )
+
+Edit Shipping Method       |  Shipping Method Edited
+:-----------------:|:-----------------:
+ ![](/static/readme_images/editingshippingmethod.webp)  |  ![](/static/readme_images/shippingmethodedited.webp)
+
+ This is all working as expected. Description is now "really really really"
+ 
+Delete Shipping Method     |  Shipping Method Deleted
+:-----------------:|:-----------------:
+ ![](/static/readme_images/shippingmethoddelete.webp)  |  ![](/static/readme_images/shippingmethoddeleted.webp)
+
+#### Shipping Costs
+
+Add Shipping Cost        |  Shipping Cost Added
+:-----------------:|:-----------------:
+ ![](/static/readme_images/addshippingcost.webp)  |  ![](/static/readme_images/shippingcostadded.webp)
+
+Edit Shipping Cost       |  Shipping Cost Edited  
+:-----------------:|:-----------------:
+ ![](/static/readme_images/editshippingcost.webp)  |  ![](/static/readme_images/shippingcosteditied.webp)
+
+ This is all working as expected. Cost is now 55.00
+
+Delete Shipping Cost    |  Shipping Cost Deleted
+:-----------------:|:-----------------:
+ ![](/static/readme_images/shippingcostadded.webp)  |  ![](/static/readme_images/shippingcostdeleted.webp)
+
+
 -----------------------------
 
 ## Django Admin
