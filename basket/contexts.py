@@ -68,7 +68,7 @@ def basket_contents(request):
             free_delivery_delta = settings.FREE_DELIVERY_THRESHOLD - total
             # Check if a flat fee is applied and add a message if so
             if flat_fee_applied:
-                messages.add_message(request, 20, "Flat Delivery Charge is applied because either you are not logged in or we have no normal delivery to your country.")
+                messages.add_message(request, 20, "Flat Delivery Charge is applied, because, either you are not logged in or we have no recognised delivery to your country.")
         else:
             delivery = 0
             free_delivery_delta = 0

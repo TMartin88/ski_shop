@@ -123,7 +123,7 @@ Shipping
 
 ![](/static/readme_images/shippingmodel.webp)
 
-The database is designed to allow the shop owner to set speficic sizes that are relveant to certain products.
+The database is designed to allow the shop owner to set specific sizes that are relevant to certain products.
 
 Also the shipping is calculated based on Package Weight.
 
@@ -226,7 +226,7 @@ This is all working as expected.
 ### Logged in Superuser
 ---
 
-There is additional functionality to superusers. Shop Managers are superusers and responsible for Product Maintenance.
+**IMPORTANT! There is additional functionality to superusers. Shop Managers are superusers and responsible for Product Maintenance**
 
 #### Product Management
 
@@ -241,17 +241,27 @@ Product Added
 ![](/static/readme_images/productadded.webp)
 
 
-This is all working as expected.
+This is all working as expected. 
 
 Edit Product       |  Editing Product
 :-----------------:|:-----------------:
  ![](/static/readme_images/editproduct.webp)  |  ![](/static/readme_images/editingproduct.webp)
 
+**Note Price Change**
 
-Edit Product Update      |  Edited Product
-:-----------------:|:-----------------:
- ![](/static/readme_images/editing2.webp)  |  ![](/static/readme_images/editedproduct.webp)
+Edited Product
 
+![](/static/readme_images/editedproduct.webp)
+
+**Note that Has Sizes has been selected as True, the default size option is now visible**
+
+**But this is not the same as assigning Product Sizes to a Product see the following image**
+
+Product with sizes
+
+![](/static/readme_images/productwithsizes.webp)
+
+These sizes are available for selection because they are sizes that have been assigned to the product.
 
 This is all working as expected.
 
@@ -315,11 +325,11 @@ This is all working as expected.
 
 The Product has sizes boolean indicates whether Sizes are available for selection for this product or not.
 
-Has Size Select    |  No Size Select
-:-----------------:|:-----------------:
- ![](/static/readme_images/sizeselect.webp)  |  ![](/static/readme_images/noselect.webp)
+Product Size Allocated  | Default Size Select    |  No Size Select
+:-----------------:|:-----------------:|:-----------------:
+ ![](/static/readme_images/productwithsizes.webp)  |  ![](/static/readme_images/editedproduct.webp)  |  ![](/static/readme_images/hasnosize.webp)
 
-The default sizes available are: XS, S, M, L, XL
+The default sizes available are: XS, S, M, L, XL and they are hard coded.
 
 With the Product Size functionality implemented in the shopping experience the sizes available are dynamic.
 
@@ -341,11 +351,29 @@ Django Admin       |  Product Size Admin
 :-----------------:|:-----------------:
  ![](/static/readme_images/admin.webp)  |  ![](/static/readme_images/adminproductsize.webp)
 
- This is all working as expected.
+  **Please note all Shipping Methods and Shipping Costfunctionality is also in the admin section.**
+
+ ### Shipping Methods
+
+![](/static/readme_images/shippingmethods.webp)
+
+### Shipping Costs
+
+![](/static/readme_images/shippingcosts.webp)
+
+The Shipping Costs have Weight Bands to which different costs are applied.
+
+The package weight dictates which band is used.
+
+At the moment only Standard Shipping is being applied.
+
+In future versions the shopper can select from various shipping methods at checkout.
 
 **Note Admin is only available to superusers**
 
 ![](/static/readme_images/denied.webp)
+
+This is all working as expected.
 
 -----------------------------
 
@@ -388,29 +416,9 @@ Skis with Sizes       |  Snowboards Default Sizes      |  Mask No Sizes
 :-----------------:|:-----------------:|:-----------------:
  ![](/static/readme_images/sizedropdown.webp)  |  ![](/static/readme_images/snowboardsize.webp) |  ![](/static/readme_images/hasnosize.webp)
 
-## Shopping Basket
----
-
-Add to Basket       |  Multiple Items in Basket
-:-----------------:|:-----------------:
- ![](/static/readme_images/skisizebasket.webp)  |  ![](/static/readme_images/basket.webp)
-
-
-Basket Contents      |  Basket Total
-:-----------------:|:-----------------:
- ![](/static/readme_images/securecheck.webp)  |  ![](/static/readme_images/check.webp)
-
 
 ## Shipping/Delivery Costs
 ---
-
-### Shipping Methods
-
-![](/static/readme_images/shippingmethods.webp)
-
-### Shipping Costs
-
-![](/static/readme_images/shippingcosts.webp)
 
 ### Shipping Cost Calculated
 
@@ -426,18 +434,45 @@ The Flat Delivery Charge is applied where the order is less than the threshold a
 
 Otherwise the rates are applied from the shipping cost model.
 
+## Shopping Basket
+---
+
+### This is where the user is Logged in and their profile country is in shipping costs.
+---
+
+Add Skis with Product Size to Basket       |  Add Snowboard with Default Size to Basket 
+:-----------------:|:-----------------:
+ ![](/static/readme_images/skisizebasket.webp)  |  ![](/static/readme_images/snowboardsizebasket.webp)
 
 
+**Note there is no Delivery cost because the threshold is exceeded**
 
+Remove Skis from Basket |  Calculated Standard Delivery Applied 
+:-----------------:|:-----------------:
+![](/static/readme_images/skisremovefrombasket.webp) |  ![](/static/readme_images/stadarddelivery.webp)
+
+**Note on the left image there is now a prompt to purchase more to avoid delivery cost**
+
+**Note on the right image and Calculated Standard Delivery is applied**
+
+### This is where the user is Not Logged in or their profile country is not in shipping costs..
+---
+
+Add Snowboard with Default Size to Basket        |  Flat Delivery Charge 
+:-----------------:|:-----------------:
+ ![](/static/readme_images/snowboardsizebasket2.webp)  |  ![](/static/readme_images/flatdeliverycharge.webp)
+
+**Note on the left image there is now a prompt to purchase more to avoid delivery cost and Flat Delivery notice**
+
+**Note on the right image there is Flat Delivery Charge applied**
 
 ## Shopping Checkout
 ---
 Checkout      |  Complete Order
 :-----------------:|:-----------------:
- ![](/static/readme_images/checkouttop.webp)  |  ![](/static/readme_images/payment.webp)
+ ![](/static/readme_images/checkouttop.webp)  |  ![](/static/readme_images/success.webp)
 
-
-![](/static/readme_images/success.webp)
+**Note on the left image that the country is New Zealand which has a designated shipping cost hence no Flat charge**
 
  This is all working as expected.
 
@@ -650,7 +685,6 @@ We will encourage customers to leave reviews and testimonials on our website. Al
 
 --------
 
-
 ## Development Transition
 ---
 
@@ -659,10 +693,9 @@ We will encourage customers to leave reviews and testimonials on our website. Al
 
 This online shop has all the standard functionality and look and feel of an online shop.
 
-The additional development is based around expanding size options and functionality.
+The additional development is based around expanding size, colour options and functionality.
 
-Also Shipping where shipping calculations other than a flat charge is possible.
-
+Also Shipping where shipping calculations are more sophisticated.
 -----------------------------------
 
 ### Planned Final Workflow and Design and Future features
@@ -684,35 +717,24 @@ Shipping will be expanded to allow for International Markets.
 ### Solved Bugs
 ---
 
-- January 28th 2023 Summernote Runserver Errors
-    - Fix 65443ec74bc87004ec1252b65d4872434b8aa062 remove references
+- April 24th 2023 Color Functionality not working
+    - Fix 6596e38b8e1639c6c8ef2f9ab76d0e23e246c01c remove color functionality
 
-- January 29th 2023 Summernote Runserver Errors
-    - Fix 427f1f4efc14aa27a00e0c6da97b062b5a929ea9 summernote references sorted
+- April 27th 2023 ProcFile incorrectly placed
+    - Fix 881a09a4a251f29a21db12a89dc98d628b437492 move Procfile
 
-- January 30th 2023 AllAuth not working
-    - Fix 5f7ff1d767fedea494db5070f50f16477b9c1336 all auth sorted
+- May 12th 2023 Path is wrong
+    - Fix 08eb54557a06c2ffcd70f817c5470b6f708e2540 incorrect path fixed
 
-- February 9th 2023 Swap Direction causing errors in developer tools console
-    - Fix e20790a7221381dd3ce90cd86015e0dbf3e415a9 only applies now to post-detail page
+- June 8th 2023 Fix email send
+    - Fix 681bddcc755f2d262d234fa3899b45de0d50e694 email send fixed
 
-- February 20th 2023 Registration not working
-    - Fix 8bf2e771a6f096549d68ad277616932c583871a3 disable email verification in settings
+- June 10th 2023 Div class incorrect
+    - Fix 681bddcc755f2d262d234fa3899b45de0d50e694 div class fixed
 
-- March 1st 2023 Double quotes typo in base.html
-    - Fix 91d95f5fbfc7c5da579a931a4f5f9951cf6ea02e syntax fixed
+- June 14th 2023 Product size not working
+    - Fix 681bddcc755f2d262d234fa3899b45de0d50e694 remoove fixed
 
-- March 1st 2023 Search results page incorrect use of alt tags
-    - Fix 08d271a6f9c14289d7298a53b78c3291cbed68ae syntax fixed
-
-- March 3rd 2023 Search results page incorrect use of aria labels
-    - Fix c8cac1283adf114aa23fed77ea246446faba84eb labels fixed
-
-- March 3rd 2023 post_detail page incorrect use of alt tags
-    - Fix 9ee5350e801fa97e92a5c105d1d3ccb92e33719f tags fixed
-
-- March 3rd 2023 post_detail page aria label error
-    - Fix dbc888e4fae2cac66c0b4f9acf489b944aecf6a8 error fixed
 
 ### Unfixed Bugs
 ---
