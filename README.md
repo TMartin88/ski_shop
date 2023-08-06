@@ -354,7 +354,7 @@ Edit Shipping Method       |  Shipping Method Edited
  ![](/static/readme_images/editingshippingmethod.webp)  |  ![](/static/readme_images/shippingmethodedited.webp)
 
  This is all working as expected. Description is now "really really really"
- 
+
 Delete Shipping Method     |  Shipping Method Deleted
 :-----------------:|:-----------------:
  ![](/static/readme_images/shippingmethoddelete.webp)  |  ![](/static/readme_images/shippingmethoddeleted.webp)
@@ -769,6 +769,9 @@ Shipping will be expanded to allow for International Markets.
 
 - June 14th 2023 Product size not working
     - Fix 681bddcc755f2d262d234fa3899b45de0d50e694 remoove fixed
+
+- August 6th 2023 Edit shipping method not working
+    - Fix f0b889e2d31cae42b5c45f2f217a240e3d78d4f2 fix view
 
 
 ### Unfixed Bugs
